@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Friendship Score Test - How Strong Is Your Friendship?</title>
+<meta name="description" content="Enter two names and get an instant Friendship Score - a fun compatibility percentage for friends. Free, fast, and shareable on Facebook, WhatsApp and Twitter.">
+<meta name="keywords" content="friendship score, friendship calculator, best friend test, friendship compatibility, name compatibility">
+<link rel="canonical" href="https://lovescoretest.com/friendship-score.html">
+ 
+<meta property="og:type" content="website">
+<meta property="og:title" content="Friendship Score Test - How Strong Is Your Friendship?">
+<meta property="og:description" content="Enter two names and discover your Friendship Score in seconds. Free and instant.">
+<meta property="og:url" content="https://lovescoretest.com/friendship-score.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Friendship Score Test - How Strong Is Your Friendship?">
+<meta name="twitter:description" content="Enter two names and discover your Friendship Score in seconds.">
+ 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Friendship Score Test",
+  "url": "https://lovescoretest.com/friendship-score.html",
+  "applicationCategory": "LifestyleApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "A free online tool that calculates a fun friendship compatibility percentage between two names."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How does the Friendship Score calculator work?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The tool takes both names, runs them through a deterministic character-based algorithm, and converts the result into a percentage between 0 and 100. The same two names will always produce the same score." } },
+    { "@type": "Question", "name": "Is the Friendship Score scientifically accurate?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. This is a fun, entertainment-only tool. It does not use any real psychological assessment or personal data." } },
+    { "@type": "Question", "name": "Is my data stored anywhere?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs directly in your browser. The names you type are never sent to a server or saved anywhere." } },
+    { "@type": "Question", "name": "Can I test group friendships too?",
+      "acceptedAnswer": { "@type": "Answer", "text": "This version tests two names at a time, but you can run it multiple times with different pairs to compare a whole friend group." } },
+    { "@type": "Question", "name": "Can I share my Friendship Score with friends?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. After your score appears, you can share it directly to Facebook, WhatsApp, or Twitter (X) using the share buttons below the result." } }
+  ]
+}
+</script>
+ 
+<style>
+  :root{
+    --plum:#123B3A; --plum-2:#1D5C52; --hotpink:#22C1A3; --coral:#FFC55B;
+    --lavender:#8FE3D3; --cream:#F6FBF7; --ink:#0F2623;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{ margin:0; font-family:'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:var(--cream); color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,.brand{ font-family:'Baloo 2','Poppins',sans-serif; }
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;} }
+  a{color:inherit;} img{max-width:100%;}
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px;}
+  header.site{ background: linear-gradient(135deg, var(--plum) 0%, var(--plum-2) 100%); color:#fff; padding:22px 20px 60px; text-align:center; position:relative; overflow:hidden; }
+  header.site::before{ content:""; position:absolute; top:-60px; right:-60px; width:220px; height:220px; background: radial-gradient(circle, rgba(255,197,91,0.35), transparent 70%); }
+  header.site::after{ content:""; position:absolute; bottom:-80px; left:-40px; width:260px; height:260px; background: radial-gradient(circle, rgba(143,227,211,0.28), transparent 70%); }
+  .brand{ font-size:1.15rem; font-weight:700; letter-spacing:0.02em; color: var(--lavender); margin-bottom:18px; position:relative; }
+  header.site h1{ font-size:2rem; line-height:1.15; margin:0 0 10px; position:relative; }
+  header.site h1 span{ color: var(--coral); }
+  header.site p.lede{ font-size:1.02rem; color: rgba(255,255,255,0.85); max-width:480px; margin:0 auto; position:relative; }
+  .ad-slot{ max-width:720px; margin:22px auto; padding:14px; min-height:90px; display:flex; align-items:center; justify-content:center; text-align:center; overflow:hidden; }
+  .calc-card{ background:#fff; max-width:520px; margin:-46px auto 30px; border-radius:24px; padding:30px 24px 26px; box-shadow: 0 20px 40px -18px rgba(18,59,58,0.35); position:relative; z-index:2; }
+  .field{ margin-bottom:16px; text-align:left; }
+  .field label{ display:block; font-weight:600; font-size:0.85rem; margin-bottom:6px; color: var(--plum); }
+  .field input{ width:100%; padding:13px 16px; border-radius:12px; border:2px solid #e2f2ee; font-size:1rem; font-family:inherit; background:#F7FDFB; transition: border-color .15s ease; }
+  .field input:focus{ outline:none; border-color: var(--hotpink); background:#fff; }
+  .calc-btn{ width:100%; padding:15px 20px; border:none; border-radius:14px; background: linear-gradient(120deg, var(--hotpink), var(--coral)); color:#0F2623; font-family:'Baloo 2', sans-serif; font-size:1.1rem; font-weight:700; cursor:pointer; margin-top:6px; box-shadow: 0 10px 22px -8px rgba(34,193,163,0.55); transition: transform .12s ease, box-shadow .12s ease; }
+  .calc-btn:hover{ transform: translateY(-2px); box-shadow: 0 14px 26px -8px rgba(34,193,163,0.6); }
+  .calc-btn:active{ transform: translateY(0); }
+  .result{ margin-top:26px; text-align:center; display:none; } .result.show{ display:block; }
+  .heart-meter{ position:relative; width:150px; height:150px; margin:0 auto 14px; }
+  .heart-meter svg{ width:100%; height:100%; display:block; }
+  .heart-bg{ fill:#e2f2ee; } .heart-fill{ fill: var(--hotpink); transform-origin: center; }
+  .heart-pct{ position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); font-family:'Baloo 2', sans-serif; font-size:1.6rem; font-weight:700; color: var(--plum); }
+  .result-names{ font-weight:600; color: var(--plum); margin-bottom:2px; }
+  .result-label{ font-family:'Baloo 2', sans-serif; font-size:1.3rem; color: var(--plum-2); margin: 4px 0 4px; }
+  .result-msg{ color:#476b66; font-size:0.92rem; max-width:360px; margin:0 auto 18px; }
+  .bar-track{ background:#e2f2ee; border-radius:20px; height:14px; width:100%; max-width:340px; margin:0 auto 18px; overflow:hidden; }
+  .bar-fill{ height:100%; width:0%; border-radius:20px; background: linear-gradient(90deg, var(--hotpink), var(--coral)); transition: width 1.1s cubic-bezier(.2,.8,.2,1); }
+  .share-row{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  .share-btn{ display:inline-flex; align-items:center; gap:7px; padding:9px 16px; border-radius:100px; font-size:0.85rem; font-weight:600; text-decoration:none; color:#fff; border:none; cursor:pointer; }
+  .share-fb{ background:#3b5998; } .share-wa{ background:#25D366; } .share-tw{ background:#111; }
+  main{ background: var(--cream); }
+  section.content{ max-width:720px; margin:0 auto; padding:10px 20px 10px; }
+  section.content h2{ font-size:1.5rem; color: var(--plum); margin-bottom:10px; }
+  section.content p{ color:#33544f; margin-bottom:14px; }
+  .steps{ display:grid; gap:14px; margin:18px 0 6px; }
+  .step{ background:#fff; border:1px solid #e2f2ee; border-radius:14px; padding:16px 18px; }
+  .step h3{ margin:0 0 4px; font-size:1.02rem; color: var(--plum-2); }
+  .step p{ margin:0; font-size:0.92rem; }
+  .faq-item{ border-bottom:1px solid #e2f2ee; padding:14px 0; }
+  .faq-item h3{ font-size:1rem; margin:0 0 6px; color: var(--plum); }
+  .faq-item p{ margin:0; font-size:0.92rem; }
+  footer.site{ background: var(--plum); color: rgba(255,255,255,0.75); text-align:center; padding:26px 20px 30px; font-size:0.82rem; margin-top:30px; }
+  footer.site a{ color: var(--lavender); text-decoration:none; }
+  #cookie-banner{ position:fixed; left:0; right:0; bottom:0; background: var(--plum); color:#fff; padding:16px 20px; display:flex; gap:14px; align-items:center; justify-content:center; flex-wrap:wrap; z-index:999; font-size:0.85rem; box-shadow: 0 -8px 24px rgba(0,0,0,0.2); }
+  #cookie-banner p{ margin:0; max-width:520px; }
+  #cookie-banner button{ padding:9px 18px; border-radius:100px; border:none; font-weight:700; cursor:pointer; font-size:0.82rem; }
+  #cookie-accept{ background: var(--hotpink); color:#0F2623; } #cookie-decline{ background: transparent; color:#fff; border:1px solid rgba(255,255,255,0.4) !important; }
+  @media (min-width:600px){ header.site h1{ font-size:2.4rem; } .calc-card{ padding:36px 34px 30px; } }
+</style>
+</head>
+<body>
+ 
+<header class="site">
+  <div class="wrap">
+    <div class="brand">🤝 LoveScoreTest.com</div>
+    <h1>What's Your <span>Friendship Score</span>?</h1>
+    <p class="lede">Type in two names and get an instant friendship compatibility percentage. Free, fun, and shareable in seconds.</p>
+  </div>
+</header>
+ 
+<div id="ad-slot-1" class="ad-slot">
+  <script>
+    atOptions = { 'key' : '358664223067c01ff85de9714367fe2e', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+  </script>
+  <script src="https://www.highrevenueformat.com/358664223067c01ff85de9714367fe2e/invoke.js"></script>
+</div>
+ 
+<main>
+  <div class="calc-card">
+    <form id="love-form">
+      <div class="field">
+        <label for="name1">Your Name</label>
+        <input type="text" id="name1" name="name1" placeholder="e.g. Alex" maxlength="40" required autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="name2">Friend's Name</label>
+        <input type="text" id="name2" name="name2" placeholder="e.g. Sam" maxlength="40" required autocomplete="off">
+      </div>
+      <button type="submit" class="calc-btn">Calculate Friendship Score 🤝</button>
+    </form>
+ 
+    <div class="result" id="result">
+      <div class="heart-meter">
+        <svg viewBox="0 0 100 100">
+          <path class="heart-bg" d="M50 88 12 52c-9-9-9-24 0-33 9-9 24-9 33 0l5 5 5-5c9-9 24-9 33 0 9 9 9 24 0 33z"/>
+          <clipPath id="heartClip"><path d="M50 88 12 52c-9-9-9-24 0-33 9-9 24-9 33 0l5 5 5-5c9-9 24-9 33 0 9 9 9 24 0 33z"/></clipPath>
+          <rect class="heart-fill" id="heartFillRect" x="0" y="100" width="100" height="0" clip-path="url(#heartClip)"/>
+        </svg>
+        <div class="heart-pct" id="heartPct">0%</div>
+      </div>
+      <p class="result-names" id="resultNames"></p>
+      <p class="result-label" id="resultLabel"></p>
+      <p class="result-msg" id="resultMsg"></p>
+      <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
+      <div class="share-row">
+        <a class="share-btn share-fb" id="shareFb" target="_blank" rel="noopener">Facebook</a>
+        <a class="share-btn share-wa" id="shareWa" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="share-btn share-tw" id="shareTw" target="_blank" rel="noopener">Twitter</a>
+      </div>
+    </div>
+  </div>
+ 
+  <div id="ad-slot-2" class="ad-slot">
+    <script>
+      atOptions = { 'key' : '08591617b0d54beb48cfca5ec87f584a', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
+    </script>
+    <script src="https://www.highrevenueformat.com/08591617b0d54beb48cfca5ec87f584a/invoke.js"></script>
+  </div>
+ 
+  <section class="content" id="how-it-works">
+    <h2>How Friendship Score Works</h2>
+    <p>Friendship Score Test turns two names into a single, fun compatibility number between 0% and 100%. There's no sign-up, no email address, and no data sent anywhere — every calculation happens right inside your browser using JavaScript, and the page never contacts a server with the names you type.</p>
+    <p>Behind the scenes, the tool reads the letters of both names and converts them into numeric values, combining them using a small set of mathematical rules — including letter positions, name length, and a bit of controlled randomness seeded by the names themselves — to produce a repeatable score. Enter the exact same two names again and you'll get the exact same result every time, which makes it fun to compare different friend pairs.</p>
+    <div class="steps">
+      <div class="step"><h3>1. Type in two names</h3><p>Add your name and a friend's name into the fields above.</p></div>
+      <div class="step"><h3>2. The algorithm runs instantly</h3><p>Each letter is converted into a value, combined across both names, and reduced to a single percentage — all client-side, in milliseconds.</p></div>
+      <div class="step"><h3>3. See your animated score</h3><p>A heart meter and progress bar fill up to your Friendship Score, along with a short, playful message.</p></div>
+      <div class="step"><h3>4. Share the result</h3><p>Send your score straight to Facebook, WhatsApp, or Twitter (X) and challenge your friend group.</p></div>
+    </div>
+    <p>This is a novelty tool built purely for entertainment — a lighthearted way to spark conversation with friends, not a scientific measure of how strong a real friendship is. Real friendship depends on trust, shared time, and effort, none of which a name-based algorithm can measure.</p>
+  </section>
+ 
+  <section class="content" id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item"><h3>How does the Friendship Score calculator work?</h3><p>The tool takes both names, runs them through a deterministic character-based algorithm, and converts the result into a percentage between 0 and 100. The same two names will always produce the same score.</p></div>
+    <div class="faq-item"><h3>Is the Friendship Score scientifically accurate?</h3><p>No. This is a fun, entertainment-only tool. It does not use any real psychological assessment or personal data.</p></div>
+    <div class="faq-item"><h3>Is my data stored anywhere?</h3><p>No. Everything runs directly in your browser. The names you type are never sent to a server or saved anywhere.</p></div>
+    <div class="faq-item"><h3>Can I test group friendships too?</h3><p>This version tests two names at a time, but you can run it multiple times with different pairs to compare a whole friend group.</p></div>
+    <div class="faq-item"><h3>Can I share my Friendship Score with friends?</h3><p>Yes. After your score appears, you can share it directly to Facebook, WhatsApp, or Twitter (X) using the share buttons below the result.</p></div>
+  </section>
+ 
+  <div id="ad-slot-3" class="ad-slot">
+    <script>
+      atOptions = { 'key' : '358664223067c01ff85de9714367fe2e', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+    </script>
+    <script src="https://www.highrevenueformat.com/358664223067c01ff85de9714367fe2e/invoke.js"></script>
+  </div>
+</main>
+ 
+<footer class="site">
+  <div class="wrap">
+    <p>Friendship Score Test is a free entertainment tool. Results are generated for fun only and are not a scientific measure of friendship.</p>
+    <p>&copy; <span id="year"></span> LoveScoreTest.com — <a href="index.html">Love Score</a> · <a href="#faq">FAQ</a></p>
+  </div>
+</footer>
+ 
+<div id="cookie-banner">
+  <p>We use cookies to improve your experience and show relevant ads. By using this site, you agree to our use of cookies.</p>
+  <button id="cookie-accept">Accept</button>
+  <button id="cookie-decline">Decline</button>
+</div>
+ 
+<script>
+(function(){
+  "use strict";
+  document.getElementById('year').textContent = new Date().getFullYear();
+ 
+  var banner = document.getElementById('cookie-banner');
+  try{ var consent = localStorage.getItem('lst_cookie_consent'); if(consent){ banner.style.display = 'none'; } }catch(e){}
+  document.getElementById('cookie-accept').addEventListener('click', function(){ try{ localStorage.setItem('lst_cookie_consent','accepted'); }catch(e){} banner.style.display = 'none'; });
+  document.getElementById('cookie-decline').addEventListener('click', function(){ try{ localStorage.setItem('lst_cookie_consent','declined'); }catch(e){} banner.style.display = 'none'; });
+ 
+  function computeScore(a, b){
+    var combined = (a + b).toLowerCase().replace(/[^a-z]/g, '');
+    if(combined.length === 0) return 50;
+    var sum = 0;
+    for(var i = 0; i < combined.length; i++){ var code = combined.charCodeAt(i) - 96; sum += code * (i + 1); }
+    var lenFactor = (a.length * 11 + b.length * 19) % 41;
+    var mixed = (sum * 37 + lenFactor * 23) % 101;
+    var score = Math.abs(Math.cos(mixed) * 10000);
+    score = Math.floor(score % 71) + 25;
+    if(score > 100) score = 100; if(score < 0) score = 0;
+    return score;
+  }
+ 
+  function labelFor(score){
+    if(score >= 90) return { label: "Best Friends Forever! 🎉", msg: "This is a rock-solid bond. Keep making memories together." };
+    if(score >= 75) return { label: "Great Friendship 🤝", msg: "A strong connection with real staying power." };
+    if(score >= 55) return { label: "Good Buddies 😊", msg: "There's a solid foundation here — keep spending time together." };
+    if(score >= 35) return { label: "Still Growing 🌱", msg: "Give it time — great friendships take effort to build." };
+    return { label: "Unlikely Duo 😅", msg: "The numbers say tricky, but real friendship is built by you, not an algorithm." };
+  }
+ 
+  var form = document.getElementById('love-form');
+  var result = document.getElementById('result');
+  var heartFillRect = document.getElementById('heartFillRect');
+  var heartPct = document.getElementById('heartPct');
+  var resultNames = document.getElementById('resultNames');
+  var resultLabel = document.getElementById('resultLabel');
+  var resultMsg = document.getElementById('resultMsg');
+  var barFill = document.getElementById('barFill');
+  var shareFb = document.getElementById('shareFb');
+  var shareWa = document.getElementById('shareWa');
+  var shareTw = document.getElementById('shareTw');
+ 
+  function animateNumber(el, from, to, duration){
+    var start = null;
+    function step(ts){
+      if(!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var value = Math.floor(from + (to - from) * progress);
+      el.textContent = value + '%';
+      if(progress < 1){ requestAnimationFrame(step); } else { el.textContent = to + '%'; }
+    }
+    requestAnimationFrame(step);
+  }
+ 
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var n1 = document.getElementById('name1').value.trim();
+    var n2 = document.getElementById('name2').value.trim();
+    if(!n1 || !n2) return;
+ 
+    var score = computeScore(n1, n2);
+    var info = labelFor(score);
+ 
+    resultNames.textContent = n1 + ' + ' + n2;
+    resultLabel.textContent = info.label;
+    resultMsg.textContent = info.msg;
+    result.classList.add('show');
+ 
+    heartFillRect.setAttribute('y', 100); heartFillRect.setAttribute('height', 0); barFill.style.width = '0%';
+ 
+    requestAnimationFrame(function(){
+      heartFillRect.style.transition = 'y 1.1s cubic-bezier(.2,.8,.2,1), height 1.1s cubic-bezier(.2,.8,.2,1)';
+      heartFillRect.setAttribute('y', 100 - score);
+      heartFillRect.setAttribute('height', score);
+      barFill.style.width = score + '%';
+    });
+ 
+    animateNumber(heartPct, 0, score, 1100);
+ 
+    var shareText = encodeURIComponent(n1 + ' + ' + n2 + ' scored ' + score + '% on the Friendship Score Test! Try it:');
+    var shareUrl = encodeURIComponent('https://lovescoretest.com/friendship-score.html');
+ 
+    shareFb.href = 'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl;
+    shareWa.href = 'https://wa.me/?text=' + shareText + '%20' + shareUrl;
+    shareTw.href = 'https://twitter.com/intent/tweet?text=' + shareText + '&url=' + shareUrl;
+ 
+    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+})();
+</script>
+ 
+</body>
+</html>
+ 
