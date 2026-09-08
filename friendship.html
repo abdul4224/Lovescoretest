@@ -1,15 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <link rel="icon" type="image/svg+xml" href="/lovescoretest-icon.svg">
- <!-- Navigation Code Fix -->
-<nav style="text-align: center; margin: 20px 0; font-family: sans-serif;">
-    <a href="/" style="margin: 5px; padding: 10px 15px; background-color: #e84393; color: white; text-decoration: none; border-radius: 20px; font-weight: bold; display: inline-block;">❤️ Love Score</a>
-    <a href="friendship.html" style="margin: 5px; padding: 10px 15px; background-color: #0984e3; color: white; text-decoration: none; border-radius: 20px; font-weight: bold; display: inline-block;">🤝 Friendship Score</a>
-    <a href="zodiac.html" style="margin: 5px; padding: 10px 15px; background-color: #6c5ce7; color: white; text-decoration: none; border-radius: 20px; font-weight: bold; display: inline-block;">✨ Zodiac Match</a>
-</nav>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/lovescoretest-icon.svg">
 <title>Friendship Score Test - How Strong Is Your Friendship?</title>
 <meta name="description" content="Enter two names and get an instant Friendship Score - a fun compatibility percentage for friends. Free, fast, and shareable on Facebook, WhatsApp and Twitter.">
 <meta name="keywords" content="friendship score, friendship calculator, best friend test, friendship compatibility, name compatibility">
@@ -112,10 +106,18 @@
   #cookie-banner p{ margin:0; max-width:520px; }
   #cookie-banner button{ padding:9px 18px; border-radius:100px; border:none; font-weight:700; cursor:pointer; font-size:0.82rem; }
   #cookie-accept{ background: var(--hotpink); color:#0F2623; } #cookie-decline{ background: transparent; color:#fff; border:1px solid rgba(255,255,255,0.4) !important; }
+  nav.site-nav{ text-align:center; padding:16px 20px 0; }
+  nav.site-nav a{ margin:5px; padding:10px 15px; color:#fff; text-decoration:none; border-radius:20px; font-weight:bold; display:inline-block; font-size:0.9rem; }
   @media (min-width:600px){ header.site h1{ font-size:2.4rem; } .calc-card{ padding:36px 34px 30px; } }
 </style>
 </head>
 <body>
+ 
+<nav class="site-nav">
+  <a href="/" style="background-color:#e84393;">❤️ Love Score</a>
+  <a href="friendship-score.html" style="background-color:#0984e3;">🤝 Friendship Score</a>
+  <a href="zodiac-compatibility.html" style="background-color:#6c5ce7;">✨ Zodiac Match</a>
+</nav>
  
 <header class="site">
   <div class="wrap">
@@ -207,7 +209,7 @@
 <footer class="site">
   <div class="wrap">
     <p>Friendship Score Test is a free entertainment tool. Results are generated for fun only and are not a scientific measure of friendship.</p>
-    <p>&copy; <span id="year"></span> LoveScoreTest.com — <a href="index.html">Love Score</a> · <a href="#faq">FAQ</a></p>
+    <p>&copy; <span id="year"></span> LoveScoreTest.com — <a href="index.html">Love Score</a> · <a href="zodiac-compatibility.html">Zodiac Match</a> · <a href="#faq">FAQ</a></p>
   </div>
 </footer>
  
