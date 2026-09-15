@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/lovescoretest-icon.svg">
+<title>About LoveScoreTest.com - Fun Compatibility Calculators</title>
+<meta name="description" content="LoveScoreTest.com makes free, fun compatibility calculators - Love Score, Friendship Score, and Zodiac Match. Learn what the site is and isn't.">
+<link rel="canonical" href="https://lovescoretest.com/about.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About LoveScoreTest.com">
+<meta property="og:description" content="What LoveScoreTest.com is, how it works, and why it's built purely for fun.">
+<meta property="og:url" content="https://lovescoretest.com/about.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="About LoveScoreTest.com">
+<meta name="twitter:description" content="What LoveScoreTest.com is, how it works, and why it's built purely for fun.">
+<style>
+:root{
+--plum:#2C1338; --plum-2:#3E1D52; --hotpink:#FF3D77; --coral:#FF8A5B;
+--lavender:#C9A6FF; --cream:#FFF7EE; --ink:#241127;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{ margin:0; font-family:'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:var(--cream); color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased; }
+h1,h2,h3,.brand{ font-family:'Baloo 2','Poppins',sans-serif; }
+@media (prefers-reduced-motion: reduce){ *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;} }
+a{color:inherit;} img{max-width:100%;}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px;}
+header.site{ background: linear-gradient(135deg, var(--plum) 0%, var(--plum-2) 100%); color:#fff; padding:22px 20px 40px; text-align:center; position:relative; overflow:hidden; }
+.brand{ font-size:1.15rem; font-weight:700; letter-spacing:0.02em; color: var(--lavender); margin-bottom:18px; position:relative; }
+header.site h1{ font-size:2rem; line-height:1.15; margin:0 0 10px; position:relative; }
+main{ background: var(--cream); }
+section.content{ max-width:720px; margin:0 auto; padding: 30px 20px 10px; }
+section.content h2{ font-size:1.4rem; color: var(--plum); margin-bottom:10px; }
+section.content p{ color:#4a3d50; margin-bottom:14px; }
+footer.site{ background: var(--plum); color: rgba(255,255,255,0.75); text-align:center; padding: 26px 20px 30px; font-size:0.82rem; margin-top: 30px; }
+footer.site a{ color: var(--lavender); text-decoration:none; }
+nav.site-nav{ text-align:center; padding:16px 20px 0; }
+nav.site-nav a{ margin:5px; padding:10px 15px; color:#fff; text-decoration:none; border-radius:20px; font-weight:bold; display:inline-block; font-size:0.9rem; }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+<a href="/" style="background-color:#e84393;">❤️ Love Score</a>
+<a href="friendship-score.html" style="background-color:#0984e3;">🤝 Friendship Score</a>
+<a href="zodiac-compatibility.html" style="background-color:#6c5ce7;">✨ Zodiac Match</a>
+</nav>
+<header class="site">
+<div class="wrap">
+<div class="brand">💜 LoveScoreTest.com</div>
+<h1>About This Site</h1>
+</div>
+</header>
+<main>
+<section class="content">
+<h2>What LoveScoreTest.com is</h2>
+<p>LoveScoreTest.com is a small collection of free, name- and sign-based compatibility calculators: the Love Score, the Friendship Score, and the Zodiac Compatibility test. Each one takes what you enter, runs it through a lighthearted algorithm right in your browser, and gives you a percentage and a playful message to share with friends.</p>
+
+<h2>What it isn't</h2>
+<p>None of the calculators on this site are scientific, psychological, or astrological assessments. They don't measure real relationships, real friendships, or real astrology — they're a fun way to spark conversation, not a tool for making decisions about your relationships. Every tool page says this plainly in its own FAQ section too.</p>
+
+<h2>How the tools work</h2>
+<p>Each calculator uses a deterministic, character- or selection-based formula that runs entirely client-side in JavaScript. Nothing you type or select is ever sent to a server, logged, or stored — refresh the page and it's gone, unless you choose to share your result yourself using the share buttons.</p>
+
+<h2>How the site is funded</h2>
+<p>LoveScoreTest.com is free to use and supported by third-party advertising shown on each page. Ads don't affect your calculator results in any way.</p>
+
+<h2>Questions?</h2>
+<p>If you'd like to get in touch, visit the <a href="contact.html">Contact page</a>. For details on cookies and advertising, see our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+</section>
+</main>
+<footer class="site">
+<div class="wrap">
+<p>&copy; <span id="year"></span> LoveScoreTest.com — <a href="index.html">Love Score</a> · <a href="friendship-score.html">Friendship Score</a> · <a href="zodiac-compatibility.html">Zodiac Match</a></p>
+<p><a href="about.html">About</a> · <a href="contact.html">Contact</a> · <a href="privacy-policy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a></p>
+</div>
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://lovescoretest.com/</loc>
-  </url>
-  <url>
-    <loc>https://lovescoretest.com/friendship-score.html</loc>
-  </url>
-  <url>
-    <loc>https://lovescoretest.com/zodiac-compatibility.html</loc>
-  </url>
+<url>
+<loc>https://lovescoretest.com/</loc>
+<lastmod>2026-09-15</lastmod>
+</url>
+<url>
+<loc>https://lovescoretest.com/friendship-score.html</loc>
+<lastmod>2026-09-15</lastmod>
+</url>
+<url>
+<loc>https://lovescoretest.com/zodiac-compatibility.html</loc>
+<lastmod>2026-09-15</lastmod>
+</url>
+<url>
+<loc>https://lovescoretest.com/about.html</loc>
+<lastmod>2026-09-15</lastmod>
+</url>
+<url>
+<loc>https://lovescoretest.com/contact.html</loc>
+<lastmod>2026-09-15</lastmod>
+</url>
+<url>
+<loc>https://lovescoretest.com/privacy-policy.html</loc>
+<lastmod>2026-09-15</lastmod>
+</url>
+<url>
+<loc>https://lovescoretest.com/terms.html</loc>
+<lastmod>2026-09-15</lastmod>
+</url>
 </urlset>
- 
