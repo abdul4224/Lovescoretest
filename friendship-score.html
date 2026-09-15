@@ -12,15 +12,43 @@
 <meta property="og:title" content="Friendship Score Test - How Strong Is Your Friendship?">
 <meta property="og:description" content="Enter two names and discover your Friendship Score in seconds. Free and instant.">
 <meta property="og:url" content="https://lovescoretest.com/friendship-score.html">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Friendship Score Test - How Strong Is Your Friendship?">
 <meta name="twitter:description" content="Enter two names and discover your Friendship Score in seconds.">
+<meta name="twitter:image" content="https://lovescoretest.com/og-image.png">
+<meta property="og:image" content="https://lovescoretest.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow">
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "BreadcrumbList",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Home",
+"item": "https://lovescoretest.com/"
+},
+{
+"@type": "ListItem",
+"position": 2,
+"name": "Friendship Score",
+"item": "https://lovescoretest.com/friendship-score.html"
+}
+]
+}
+</script>
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
 "@type": "SoftwareApplication",
 "name": "Friendship Score Test",
 "url": "https://lovescoretest.com/friendship-score.html",
+"image": "https://lovescoretest.com/og-image.png",
 "applicationCategory": "LifestyleApplication",
 "operatingSystem": "Any",
 "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -106,12 +134,19 @@ footer.site a{ color: var(--lavender); text-decoration:none; }
 nav.site-nav{ text-align:center; padding:16px 20px 0; }
 nav.site-nav a{ margin:5px; padding:10px 15px; color:#fff; text-decoration:none; border-radius:20px; font-weight:bold; display:inline-block; font-size:0.9rem; }
 @media (min-width:600px){ header.site h1{ font-size:2.4rem; } .calc-card{ padding:36px 34px 30px; } }
+:focus-visible{ outline:3px solid var(--coral); outline-offset:2px; }
+html,body{ overflow-x:hidden; }
+.skip-link{ position:absolute; left:-9999px; top:0; background:#fff; color:var(--plum); padding:10px 18px; z-index:1000; border-radius:0 0 10px 0; font-weight:700; text-decoration:none; }
+.skip-link:focus{ left:0; }
+.ad-slot{ overflow:hidden; width:100%; }
+.ad-slot iframe{ max-width:100%; }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#love-form">Skip to main content</a>
 <nav class="site-nav">
-<a href="/" style="background-color:#e84393;">❤️ Love Score</a>
-<a href="friendship-score.html" style="background-color:#0984e3;">🤝 Friendship Score</a>
+<a href="/" style="background-color:#CC3B81;">❤️ Love Score</a>
+<a href="friendship-score.html" style="background-color:#0877CC;">🤝 Friendship Score</a>
 <a href="zodiac-compatibility.html" style="background-color:#6c5ce7;">✨ Zodiac Match</a>
 </nav>
 <header class="site">
@@ -129,7 +164,7 @@ atOptions = { 'key' : '358664223067c01ff85de9714367fe2e', 'format' : 'iframe', '
 </div>
 <main>
 <div class="calc-card">
-<form id="love-form">
+<form id="love-form" tabindex="-1">
 <div class="field">
 <label for="name1">Your Name</label>
 <input type="text" id="name1" name="name1" placeholder="e.g. Alex" maxlength="40" required autocomplete="off">
@@ -154,9 +189,9 @@ atOptions = { 'key' : '358664223067c01ff85de9714367fe2e', 'format' : 'iframe', '
 <p class="result-msg" id="resultMsg"></p>
 <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
 <div class="share-row">
-<a class="share-btn share-fb" id="shareFb" target="_blank" rel="noopener">Facebook</a>
-<a class="share-btn share-wa" id="shareWa" target="_blank" rel="noopener">WhatsApp</a>
-<a class="share-btn share-tw" id="shareTw" target="_blank" rel="noopener">Twitter</a>
+<a class="share-btn share-fb" id="shareFb" target="_blank" rel="noopener noreferrer">Facebook</a>
+<a class="share-btn share-wa" id="shareWa" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+<a class="share-btn share-tw" id="shareTw" target="_blank" rel="noopener noreferrer">Twitter</a>
 </div>
 </div>
 </div>
@@ -176,7 +211,7 @@ atOptions = { 'key' : '08591617b0d54beb48cfca5ec87f584a', 'format' : 'iframe', '
 <div class="step"><h3>3. See your animated score</h3><p>A heart meter and progress bar fill up to your Friendship Score, along with a short, playful message.</p></div>
 <div class="step"><h3>4. Share the result</h3><p>Send your score straight to Facebook, WhatsApp, or Twitter (X) and challenge your friend group.</p></div>
 </div>
-<p>This is a novelty tool built purely for entertainment — a lighthearted way to spark conversation with friends, not a scientific measure of how strong a real friendship is. Real friendship depends on trust, shared time, and effort, none of which a name-based algorithm can measure.</p>
+<p>This is a novelty tool built purely for entertainment — a lighthearted way to spark conversation with friends, not a scientific measure of how strong a real friendship is. Real friendship depends on trust, shared time, and effort, none of which a name-based algorithm can measure. If you're curious about other pairings, try the <a href="index.html">Love Score test</a> for romantic compatibility, or the <a href="zodiac-compatibility.html">Zodiac Compatibility test</a> to match by star sign instead.</p>
 </section>
 <section class="content" id="faq">
 <h2>Frequently Asked Questions</h2>
@@ -202,8 +237,8 @@ atOptions = { 'key' : '358664223067c01ff85de9714367fe2e', 'format' : 'iframe', '
 </footer>
 <div id="cookie-banner">
 <p>We use cookies to improve your experience and show relevant ads. By using this site, you agree to our use of cookies.</p>
-<button id="cookie-accept">Accept</button>
-<button id="cookie-decline">Decline</button>
+<button type="button" id="cookie-accept">Accept</button>
+<button type="button" id="cookie-decline">Decline</button>
 </div>
 <script>
 (function(){
