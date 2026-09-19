@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="/lovescoretest-icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <title>Relationship Days Calculator - How Long Have We Been Together?</title>
 <meta name="description" content="Enter your anniversary date to see exactly how long you've been together, your next milestone, and a countdown to your next anniversary. Free and instant.">
 <link rel="canonical" href="https://lovescoretest.com/relationship-days-calculator.html">
@@ -356,7 +359,7 @@ var ymdParts = [];
 if(ymd.y>0) ymdParts.push(ymd.y + (ymd.y===1?' year':' years'));
 if(ymd.m>0) ymdParts.push(ymd.m + (ymd.m===1?' month':' months'));
 ymdParts.push(ymd.d + (ymd.d===1?' day':' days'));
-document.getElementById('ymdLine').textContent = 'That\\'s ' + ymdParts.join(', ');
+document.getElementById('ymdLine').textContent = 'That\'s ' + ymdParts.join(', ');
 
 document.getElementById('weeksVal').textContent = weeks.toLocaleString();
 document.getElementById('monthsVal').textContent = months.toLocaleString();
@@ -380,7 +383,7 @@ document.getElementById('annivSub').textContent = 'That falls on ' + annivMonthD
 
 result.classList.add('show');
 
-var shareText = encodeURIComponent('We\\'ve been together for ' + total.toLocaleString() + ' days! Check yours on LoveScoreTest.com:');
+var shareText = encodeURIComponent('We\'ve been together for ' + total.toLocaleString() + ' days! Check yours on LoveScoreTest.com:');
 var shareUrl = encodeURIComponent('https://lovescoretest.com/relationship-days-calculator.html');
 document.getElementById('shareFb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl;
 document.getElementById('shareWa').href = 'https://wa.me/?text=' + shareText + '%20' + shareUrl;
