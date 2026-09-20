@@ -52,7 +52,7 @@ try {
   console.error('Error loading questions:', err);
 }
 
-// In-Memory Rate Limiter for AI endpoint (5 requests per min per IP)
+// In-Memory Rate Limiter for AI endpoint (10 requests per min per IP)
 const ipRequestMap = new Map();
 function rateLimitMiddleware(req, res, next) {
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1';
@@ -131,7 +131,7 @@ app.post('/api/ai-advisor', rateLimitMiddleware, async (req, res) => {
 
     if (isCrisis) {
       return res.json({
-        reply: "Your safety and emotional well-being are paramount. If you or someone you know is in immediate danger or experiencing domestic abuse, please connect with trained professionals right away:\n\n• National Domestic Violence Hotline: Call 1-800-799-SAFE (7233) or text 'START' to 88788.\n• Crisis Text Line: Text HOME to 741741 (Free, 24/7, confidential).\n• Suicide & Crisis Lifeline: Call or text 988.\n\nYou do not have to carry this alone."
+        reply: "Your safety and emotional well-being are paramount. If you or someone you know is in immediate danger, experiencing domestic abuse, or at risk of self-harm, please contact local emergency services or a qualified crisis/domestic-violence support service right away.\n\nIf you are in the United States, you can call or text 988 for the Suicide & Crisis Lifeline, or contact the National Domestic Violence Hotline at 1-800-799-SAFE (7233). If you are outside the United States, please use your local emergency number or a trusted local crisis/domestic-violence support service.\n\nYou do not have to carry this alone."
       });
     }
 
@@ -153,7 +153,7 @@ Your purpose: Help partners and couples navigate daily relationship questions, b
 STRICT SAFETY RULES:
 1. You are NOT a doctor, psychologist, marriage therapist, or attorney. Never diagnose mental disorders, personality styles, or attachment disorders.
 2. Never encourage manipulation, dishonesty, jealousy testing, or retaliation.
-3. If the user mentions domestic violence, abuse, severe distress, or self-harm, immediately provide safety hotlines (e.g. 1-800-799-SAFE or 988) and urge contacting emergency professionals.
+3. If the user mentions domestic violence, abuse, severe distress, or self-harm, prioritize immediate safety. Encourage the user to contact local emergency services or qualified crisis/domestic-violence professionals. Mention 988 and 1-800-799-SAFE only as United States resources, and advise users outside the United States to use their local emergency number or local crisis/domestic-violence support service.
 4. Keep answers warm, concise (2-4 brief paragraphs), and actionable. Focus on active listening, empathy, mutual validation, and practical steps.`;
 
     let responseText = '';
@@ -163,7 +163,7 @@ STRICT SAFETY RULES:
         contents: trimmedQuestion,
         config: {
           systemInstruction: systemPrompt,
-          temperature: 0.7,
+
           maxOutputTokens: 600
         }
       });
@@ -176,7 +176,7 @@ STRICT SAFETY RULES:
         contents: trimmedQuestion,
         config: {
           systemInstruction: systemPrompt,
-          temperature: 0.7,
+
           maxOutputTokens: 600
         }
       });
