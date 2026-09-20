@@ -6,7 +6,9 @@
 <link rel="icon" type="image/svg+xml" href="/lovescoretest-icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;600;700&display=swap" as="style">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;600;700&display=swap"></noscript>
 <title>Love Score Test - Check Your Love Compatibility Percentage</title>
 <meta name="description" content="Enter two names and get an instant Love Score - a fun compatibility percentage calculator. Free, fast, and shareable on Facebook, WhatsApp and Twitter.">
 <meta name="keywords" content="love score, love calculator, love percentage, love compatibility test, name compatibility">
@@ -438,6 +440,10 @@ html,body{ overflow-x:hidden; }
 .skip-link:focus{ left:0; }
 .ad-slot{ overflow:hidden; width:100%; }
 .ad-slot iframe{ max-width:100%; }
+/* Reserve space for the 300x250 ad units (250px) + 14px padding on each side
+   so the ads do not push content down (layout shift) when their iframes load.
+   Not applied below 600px, where the responsive ad size is not guaranteed. */
+@media (min-width:600px){ #ad-slot-1, #ad-slot-3{ min-height:278px; } }
 </style>
 </head>
 <body>

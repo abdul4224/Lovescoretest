@@ -6,7 +6,9 @@
 <link rel="icon" type="image/svg+xml" href="/lovescoretest-icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;600;700&display=swap" as="style">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;600;700&display=swap"></noscript>
 <title>Zodiac Compatibility Test - Star Sign Match Calculator</title>
 <meta name="description" content="Pick two zodiac signs and get an instant compatibility percentage. Free, fast astrology-style match calculator, shareable on Facebook, WhatsApp and Twitter.">
 <meta name="keywords" content="zodiac compatibility, star sign match, astrology compatibility calculator, zodiac love match">
@@ -144,6 +146,10 @@ html,body{ overflow-x:hidden; }
 .skip-link:focus{ left:0; }
 .ad-slot{ overflow:hidden; width:100%; }
 .ad-slot iframe{ max-width:100%; }
+/* Reserve space for the 300x250 ad units (250px) + 14px padding on each side
+   so the ads do not push content down (layout shift) when their iframes load.
+   Not applied below 600px, where the responsive ad size is not guaranteed. */
+@media (min-width:600px){ #ad-slot-1, #ad-slot-3{ min-height:278px; } }
 </style>
 </head>
 <body>
