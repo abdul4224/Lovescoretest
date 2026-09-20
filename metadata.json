@@ -1,0 +1,8 @@
+{
+  "name": "Love Score Test",
+  "description": "Love, relationship, and couple compatibility SaaS platform with calculators, anniversary tracking, AI advice, and guides.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
