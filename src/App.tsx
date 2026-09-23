@@ -162,20 +162,20 @@ export default function App() {
         {currentHash.startsWith('tool/') && (
           <>
             <aside
-              className="hidden 2xl:block fixed top-28 left-[calc(50%-720px)] z-30 w-[160px]"
+              className="hidden 2xl:block fixed top-28 left-4 xl:left-6 2xl:left-[max(1rem,calc(50%-760px))] z-30 w-[160px]"
               aria-label="Left advertisement"
             >
-              <div className="rounded-xl border border-slate-200 bg-white/90 p-1 shadow-sm dark:border-slate-800 dark:bg-slate-900/90">
-                <AdsterraSlot slot="footer_banner" className="my-0 px-0" />
+              <div className="w-[160px] overflow-hidden rounded-xl border border-slate-200 bg-white/90 p-0 shadow-sm dark:border-slate-800 dark:bg-slate-900/90">
+                <AdsterraSlot slot="footer_banner" className="!my-0 !w-[160px] !px-0" />
               </div>
             </aside>
 
             <aside
-              className="hidden 2xl:block fixed top-28 right-[calc(50%-720px)] z-30 w-[160px]"
+              className="hidden 2xl:block fixed top-28 right-4 xl:right-6 2xl:right-[max(1rem,calc(50%-760px))] z-30 w-[160px]"
               aria-label="Right advertisement"
             >
-              <div className="rounded-xl border border-slate-200 bg-white/90 p-1 shadow-sm dark:border-slate-800 dark:bg-slate-900/90">
-                <AdsterraSlot slot="tool_bottom" className="my-0 px-0" />
+              <div className="w-[160px] overflow-hidden rounded-xl border border-slate-200 bg-white/90 p-0 shadow-sm dark:border-slate-800 dark:bg-slate-900/90">
+                <AdsterraSlot slot="tool_bottom" className="!my-0 !w-[160px] !px-0" />
               </div>
             </aside>
           </>
