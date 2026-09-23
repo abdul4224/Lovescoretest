@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 
 export type AdSlotType =
   | 'homepage_top'
@@ -75,7 +75,7 @@ const AD_UNITS: Record<Exclude<AdSlotType, 'homepage_top'>, AdUnitConfig> & {
 /**
  * Builds the isolated HTML document loaded inside the ad iframe.
  * Adsterra's invoke.js can call document.write() — running it inside a
- * sandboxed iframe (instead of injecting the <script> directly into the
+ * iframe (instead of injecting the <script> directly into the
  * live page) means that write() only ever touches this throwaway iframe
  * document, never the real React app DOM.
  */
@@ -99,7 +99,7 @@ const buildAdIframeDoc = (unit: AdUnitConfig): string => `<!doctype html>
  *
  * - Renders a CLS-resistant reserved-space placeholder until the slot
  *   scrolls near the viewport, then lazy-loads the real Adsterra unit.
- * - The ad itself loads inside a sandboxed iframe so Adsterra's script
+ * - The ad itself loads inside a iframe so Adsterra's script
  *   (which may use document.write) can never affect the host page.
  * - Ads never disguise as buttons, never cover interactive tools, and
  *   adhere strictly to user trust.
@@ -184,7 +184,6 @@ export const AdsterraSlot: React.FC<AdsterraSlotProps> = ({ slot, className = ''
             style={{ border: 'none', maxWidth: '100%' }}
             scrolling="no"
             loading="lazy"
-            sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
           />
         ) : (
           <div className="flex flex-col items-center gap-1.5 text-slate-400 dark:text-slate-500 py-2">
@@ -198,3 +197,5 @@ export const AdsterraSlot: React.FC<AdsterraSlotProps> = ({ slot, className = ''
     </div>
   );
 };
+
+

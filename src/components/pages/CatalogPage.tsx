@@ -1,7 +1,8 @@
-import React, { useState, useMemo } from 'react';
+﻿import React, { useState, useMemo } from 'react';
 import { Search, Filter, Sparkles, Heart, ChevronRight, CheckCircle2, Clock, ArrowRight, Check } from 'lucide-react';
 import { ALL_TOOLS, TOOL_CATEGORIES, TOOL_PHASES } from '../../data/toolsData';
 import { ToolItem } from '../../types';
+import { AdsterraSlot } from '../AdsterraSlot';
 
 interface CatalogPageProps {
   initialCategory?: string | null;
@@ -193,6 +194,8 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
         </div>
       </div>
 
+      <AdsterraSlot slot="homepage_incontent" />
+
       {/* Results Header Counter */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-slate-600 dark:text-slate-300 mb-6 gap-2">
         <span>
@@ -284,3 +287,5 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
     </div>
   );
 };
+
+
