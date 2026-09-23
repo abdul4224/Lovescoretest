@@ -1,4 +1,4 @@
-/**
+﻿/**
  * LoveScoreTest.com - Free Relationship & Couple Tools Hub
  * Modern, High-Performance, SEO-Optimized Client-Side Web Application
  */
@@ -66,7 +66,7 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  // Keyboard shortcut listener for ⌘K or Ctrl+K
+  // Keyboard shortcut listener for âŒ˜K or Ctrl+K
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -159,23 +159,27 @@ export default function App() {
 
       {/* Main Page Content */}
       <div className="relative">
-        <aside
-          className="hidden 2xl:block fixed top-28 left-[calc(50%-720px)] z-30 w-[160px]"
-          aria-label="Left advertisement"
-        >
-          <div className="rounded-xl border border-slate-200 bg-white/90 p-1 shadow-sm dark:border-slate-800 dark:bg-slate-900/90">
-            <AdsterraSlot slot="footer_banner" className="my-0 px-0" />
-          </div>
-        </aside>
+        {currentHash.startsWith('tool/') && (
+          <>
+            <aside
+              className="hidden 2xl:block fixed top-28 left-[calc(50%-720px)] z-30 w-[160px]"
+              aria-label="Left advertisement"
+            >
+              <div className="rounded-xl border border-slate-200 bg-white/90 p-1 shadow-sm dark:border-slate-800 dark:bg-slate-900/90">
+                <AdsterraSlot slot="footer_banner" className="my-0 px-0" />
+              </div>
+            </aside>
 
-        <aside
-          className="hidden 2xl:block fixed top-28 right-[calc(50%-720px)] z-30 w-[160px]"
-          aria-label="Right advertisement"
-        >
-          <div className="rounded-xl border border-slate-200 bg-white/90 p-1 shadow-sm dark:border-slate-800 dark:bg-slate-900/90">
-            <AdsterraSlot slot="tool_bottom" className="my-0 px-0" />
-          </div>
-        </aside>
+            <aside
+              className="hidden 2xl:block fixed top-28 right-[calc(50%-720px)] z-30 w-[160px]"
+              aria-label="Right advertisement"
+            >
+              <div className="rounded-xl border border-slate-200 bg-white/90 p-1 shadow-sm dark:border-slate-800 dark:bg-slate-900/90">
+                <AdsterraSlot slot="tool_bottom" className="my-0 px-0" />
+              </div>
+            </aside>
+          </>
+        )}
 
         <main className="flex-grow">
           {renderContent()}
@@ -185,7 +189,7 @@ export default function App() {
       {/* Site Footer */}
       <Footer onNavigate={handleNavigate} />
 
-      {/* Global Quick Search Modal (⌘K) */}
+      {/* Global Quick Search Modal (âŒ˜K) */}
       <SearchModal
         isOpen={searchOpen}
         onClose={() => setSearchOpen(false)}
@@ -203,3 +207,4 @@ export default function App() {
     </div>
   );
 }
+
