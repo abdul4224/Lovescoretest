@@ -1,8 +1,7 @@
 {
-  "name": "Love Score Test",
-  "description": "Love, relationship, and couple compatibility SaaS platform with calculators, anniversary tracking, AI advice, and guides.",
+  "name": "LoveScoreTest",
+  "description": "Free Love, Compatibility & Relationship Tools. Explore 100+ love tests, quizzes, games, and relationship calculators.",
   "requestFramePermissions": [],
-  "majorCapabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
-  ]
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
+
