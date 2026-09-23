@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef } from 'react';
 
 export type AdSlotType =
   | 'homepage_top'
@@ -19,19 +19,7 @@ interface AdUnitConfig {
   invokeSrc: string;
 }
 
-/**
- * Real Adsterra "Banner" (atOptions/invoke.js) zone codes.
- * Centralized here so swapping a zone (e.g. re-sizing footer_banner)
- * is a one-line edit and never touches HomePage.tsx / ToolDetailView.tsx.
- *
- * NOTE: footer_banner currently uses a 160x600 skyscraper code because
- * that was the 6th code provided — it will render tall/narrow inside the
- * footer strip. Swap this entry (or with tool_bottom) once a wider
- * 728x90 / 320x50 footer-shaped zone is available from Adsterra.
- */
-const AD_UNITS: Record<Exclude<AdSlotType, 'homepage_top'>, AdUnitConfig> & {
-  homepage_top: { desktop: AdUnitConfig; mobile: AdUnitConfig };
-} = {
+const AD_UNITS = {
   homepage_top: {
     desktop: {
       key: '08591617b0d54beb48cfca5ec87f584a',
@@ -70,132 +58,84 @@ const AD_UNITS: Record<Exclude<AdSlotType, 'homepage_top'>, AdUnitConfig> & {
     height: 600,
     invokeSrc: 'https://www.highrevenueformat.com/e93dd0260f8f170aa495d6679fe95416/invoke.js',
   },
+} as const;
+
+const loadAd = (container: HTMLDivElement, unit: AdUnitConfig) => {
+  container.innerHTML = '';
+
+  const scriptConfig = document.createElement('script');
+  scriptConfig.text = `
+    atOptions = {
+      'key': '${unit.key}',
+      'format': 'iframe',
+      'height': ${unit.height},
+      'width': ${unit.width},
+      'params': {}
+    };
+  `;
+
+  const script = document.createElement('script');
+  script.src = unit.invokeSrc;
+  script.async = false;
+
+  container.appendChild(scriptConfig);
+  container.appendChild(script);
 };
 
-/**
- * Builds the isolated HTML document loaded inside the ad iframe.
- * Adsterra's invoke.js can call document.write() — running it inside a
- * iframe (instead of injecting the <script> directly into the
- * live page) means that write() only ever touches this throwaway iframe
- * document, never the real React app DOM.
- */
-const buildAdIframeDoc = (unit: AdUnitConfig): string => `<!doctype html>
-<html><head><meta charset="utf-8" /><style>html,body{margin:0;padding:0;overflow:hidden;background:transparent;display:flex;align-items:center;justify-content:center;}</style></head>
-<body>
-<script>
-  atOptions = {
-    'key': '${unit.key}',
-    'format': 'iframe',
-    'height': ${unit.height},
-    'width': ${unit.width},
-    'params': {}
-  };
-<\/script>
-<script src="${unit.invokeSrc}"><\/script>
-</body></html>`;
-
-/**
- * Reusable Adsterra Ad Slot Component
- *
- * - Renders a CLS-resistant reserved-space placeholder until the slot
- *   scrolls near the viewport, then lazy-loads the real Adsterra unit.
- * - The ad itself loads inside a iframe so Adsterra's script
- *   (which may use document.write) can never affect the host page.
- * - Ads never disguise as buttons, never cover interactive tools, and
- *   adhere strictly to user trust.
- */
 export const AdsterraSlot: React.FC<AdsterraSlotProps> = ({ slot, className = '' }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
-  const [activeUnit, setActiveUnit] = useState<AdUnitConfig | null>(null);
-
-  const getSlotConfig = () => {
-    switch (slot) {
-      case 'homepage_top':
-        return {
-          minHeight: 'min-h-[90px] md:min-h-[100px]',
-        };
-      case 'homepage_incontent':
-        return {
-          minHeight: 'min-h-[250px]',
-        };
-      case 'tool_top':
-        return {
-          minHeight: 'min-h-[80px]',
-        };
-      case 'tool_bottom':
-        return {
-          minHeight: 'min-h-[120px]',
-        };
-      case 'footer_banner':
-        return {
-          minHeight: 'min-h-[90px]',
-        };
-    }
-  };
-
-  const config = getSlotConfig();
+  const adRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const node = containerRef.current;
+    const node = adRef.current;
     if (!node) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0]?.isIntersecting) {
-          const unit =
-            slot === 'homepage_top'
-              ? window.matchMedia('(min-width: 768px)').matches
-                ? AD_UNITS.homepage_top.desktop
-                : AD_UNITS.homepage_top.mobile
-              : (AD_UNITS[slot] as AdUnitConfig);
+        if (!entries[0]?.isIntersecting) return;
 
-          setActiveUnit(unit);
-          setShouldLoad(true);
-          observer.disconnect();
-        }
+        const unit =
+          slot === 'homepage_top'
+            ? window.matchMedia('(min-width: 768px)').matches
+              ? AD_UNITS.homepage_top.desktop
+              : AD_UNITS.homepage_top.mobile
+            : AD_UNITS[slot];
+
+        loadAd(node, unit);
+        observer.disconnect();
       },
-      { rootMargin: '200px' }
+      { rootMargin: '300px 0px' }
     );
 
     observer.observe(node);
+
     return () => observer.disconnect();
   }, [slot]);
 
+  const unit =
+    slot === 'homepage_top'
+      ? window.matchMedia('(min-width: 768px)').matches
+        ? AD_UNITS.homepage_top.desktop
+        : AD_UNITS.homepage_top.mobile
+      : AD_UNITS[slot];
+
   return (
     <div
-      className={`w-full my-6 mx-auto max-w-4xl px-4 transition-all duration-200 ${className}`}
-      aria-label="Advertisement Section"
+      className={`w-full my-6 mx-auto flex justify-center ${className}`}
+      aria-label="Advertisement"
     >
       <div
-        ref={containerRef}
-        className={`w-full rounded-2xl border border-slate-200/80 bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm text-center flex flex-col items-center justify-center relative overflow-hidden ${config.minHeight} ${shouldLoad ? '' : 'p-4'}`}
+        ref={adRef}
+        className="relative flex items-center justify-center overflow-hidden"
+        style={{
+          width: '100%',
+          maxWidth: `${unit.width}px`,
+          minHeight: `${unit.height}px`,
+        }}
       >
-        <span className="absolute top-2 right-3 text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 z-10">
+        <span className="absolute top-1 right-1 z-10 text-[9px] uppercase tracking-wider text-slate-400">
           Advertisement
         </span>
-
-        {shouldLoad && activeUnit ? (
-          <iframe
-            title="Advertisement"
-            srcDoc={buildAdIframeDoc(activeUnit)}
-            width={activeUnit.width}
-            height={activeUnit.height}
-            style={{ border: 'none', maxWidth: '100%' }}
-            scrolling="no"
-            loading="lazy"
-          />
-        ) : (
-          <div className="flex flex-col items-center gap-1.5 text-slate-400 dark:text-slate-500 py-2">
-            <div className="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400">
-              <span className="inline-block w-2 h-2 rounded-full bg-pink-400 animate-pulse"></span>
-              <span>Advertisement</span>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
 };
-
-

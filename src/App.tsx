@@ -17,6 +17,7 @@ import { SearchModal } from './components/SearchModal';
 import { SocialShareModal } from './components/SocialShareModal';
 import { ALL_TOOLS } from './data/toolsData';
 import { ShareData } from './types';
+import { AdsterraSlot } from './components/AdsterraSlot';
 
 export default function App() {
   // Theme state: defaults to light theme for crisp contrast
@@ -157,9 +158,29 @@ export default function App() {
       />
 
       {/* Main Page Content */}
-      <main className="flex-grow">
-        {renderContent()}
-      </main>
+      <div className="relative">
+        <aside
+          className="hidden 2xl:block fixed top-28 left-[calc(50%-720px)] z-30 w-[160px]"
+          aria-label="Left advertisement"
+        >
+          <div className="rounded-xl border border-slate-200 bg-white/90 p-1 shadow-sm dark:border-slate-800 dark:bg-slate-900/90">
+            <AdsterraSlot slot="footer_banner" className="my-0 px-0" />
+          </div>
+        </aside>
+
+        <aside
+          className="hidden 2xl:block fixed top-28 right-[calc(50%-720px)] z-30 w-[160px]"
+          aria-label="Right advertisement"
+        >
+          <div className="rounded-xl border border-slate-200 bg-white/90 p-1 shadow-sm dark:border-slate-800 dark:bg-slate-900/90">
+            <AdsterraSlot slot="tool_bottom" className="my-0 px-0" />
+          </div>
+        </aside>
+
+        <main className="flex-grow">
+          {renderContent()}
+        </main>
+      </div>
 
       {/* Site Footer */}
       <Footer onNavigate={handleNavigate} />
