@@ -162,7 +162,7 @@ export default function App() {
         {currentHash.startsWith('tool/') && (
           <>
             <aside
-              className="hidden xl:block fixed top-28 left-4 xl:left-6 2xl:left-[max(1rem,calc(50%-760px))] z-30 w-[160px]"
+              className="hidden md:block fixed top-28 left-0 xl:left-6 2xl:left-[max(1rem,calc(50%-760px))] z-30 w-[160px]"
               aria-label="Left advertisement"
             >
               <div className="w-[160px] overflow-hidden rounded-xl border border-slate-200 bg-white/90 p-0 shadow-sm dark:border-slate-800 dark:bg-slate-900/90">
@@ -171,7 +171,7 @@ export default function App() {
             </aside>
 
             <aside
-              className="hidden xl:block fixed top-28 right-4 xl:right-6 2xl:right-[max(1rem,calc(50%-760px))] z-30 w-[160px]"
+              className="hidden md:block fixed top-28 right-0 xl:right-6 2xl:right-[max(1rem,calc(50%-760px))] z-30 w-[160px]"
               aria-label="Right advertisement"
             >
               <div className="w-[160px] overflow-hidden rounded-xl border border-slate-200 bg-white/90 p-0 shadow-sm dark:border-slate-800 dark:bg-slate-900/90">
