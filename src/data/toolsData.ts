@@ -1,4 +1,4 @@
-﻿import { RawToolItem, ToolItem } from '../types';
+import { RawToolItem, ToolItem } from '../types';
 
 export const PHASE_NAMES: Record<number, string> = {
   1: 'PHASE 1 — LOVE CALCULATORS',

@@ -1,4 +1,4 @@
-﻿import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Search, Filter, Sparkles, Heart, ChevronRight, CheckCircle2, Clock, ArrowRight, Check } from 'lucide-react';
 import { ALL_TOOLS, TOOL_CATEGORIES, TOOL_PHASES } from '../../data/toolsData';
 import { ToolItem } from '../../types';
@@ -159,7 +159,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
                   : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
               }`}
             >
-              Phase {p.phase}: {p.name}
+              {p.name}
             </button>
           ))}
         </div>

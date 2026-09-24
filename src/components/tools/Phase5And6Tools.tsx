@@ -1,4 +1,4 @@
-﻿import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Heart, Shuffle, RotateCcw, Sparkles } from 'lucide-react';
 import { ToolItem, ShareData } from '../../types';
 

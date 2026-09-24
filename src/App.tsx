@@ -1,4 +1,4 @@
-﻿/**
+/**
  * LoveScoreTest.com - Free Relationship & Couple Tools Hub
  * Modern, High-Performance, SEO-Optimized Client-Side Web Application
  */
@@ -166,7 +166,7 @@ export default function App() {
               aria-label="Left advertisement"
             >
               <div className="w-[160px] overflow-hidden rounded-xl border border-slate-200 bg-white/90 p-0 shadow-sm dark:border-slate-800 dark:bg-slate-900/90">
-                <AdsterraSlot slot="footer_banner" className="!my-0 !w-[160px] !px-0" />
+                <AdsterraSlot slot="sidebar_left" className="!my-0 !w-[160px] !px-0" />
               </div>
             </aside>
 
@@ -175,7 +175,7 @@ export default function App() {
               aria-label="Right advertisement"
             >
               <div className="w-[160px] overflow-hidden rounded-xl border border-slate-200 bg-white/90 p-0 shadow-sm dark:border-slate-800 dark:bg-slate-900/90">
-                <AdsterraSlot slot="tool_bottom" className="!my-0 !w-[160px] !px-0" />
+                <AdsterraSlot slot="sidebar_right" className="!my-0 !w-[160px] !px-0" />
               </div>
             </aside>
           </>

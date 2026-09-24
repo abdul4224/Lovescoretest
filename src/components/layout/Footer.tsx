@@ -97,10 +97,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </ul>
           </div>
 
-          {/* 100 Tools Phases */}
+          {/* 100 Tools */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
-              Tool Roadmap (100 Tools)
+              100 Tools
             </h4>
             <ul className="space-y-2 text-xs">
               {TOOL_PHASES.slice(0, 5).map((phase) => (
@@ -109,7 +109,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                     onClick={() => onNavigate(`catalog?phase=${phase.phase}`)}
                     className="text-slate-600 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 transition-colors text-left"
                   >
-                    Phase {phase.phase}: {phase.name}
+                    {phase.name}
                   </button>
                 </li>
               ))}

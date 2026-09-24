@@ -23,6 +23,7 @@ import {
 import { ALL_TOOLS } from '../../data/toolsData';
 import { AdsterraSlot } from '../AdsterraSlot';
 import { FAQAccordion } from '../FAQAccordion';
+import { LiveVisitorCounter } from '../LiveVisitorCounter';
 import { ShareData } from '../../types';
 
 interface HomePageProps {
@@ -212,6 +213,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
 
       {/* Leaderboard Adsterra Top Slot */}
       <AdsterraSlot slot="homepage_top" className="my-6" />
+
+      {/* Live Visitor Counter (Homepage Only) */}
+      <LiveVisitorCounter />
 
       {/* ========================================================
           CATEGORIES SECTION
