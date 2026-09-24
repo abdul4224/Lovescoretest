@@ -32,7 +32,7 @@ export default function App() {
   // Routing state based on window.location.hash
   const [currentHash, setCurrentHash] = useState<string>(() => {
     if (typeof window !== 'undefined') {
-      return window.location.hash.replace(/^#\/?/, '') || 'home';
+      return window.location.hash.replace(/^\/?/, '') || 'home';
     }
     return 'home';
   });
@@ -56,15 +56,14 @@ export default function App() {
 
   // Listen to hash changes for routing
   useEffect(() => {
-    const handleHashChange = () => {
-      const cleanHash = window.location.hash.replace(/^#\/?/, '') || 'home';
-      setCurrentHash(cleanHash);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+  const handlePopState = () => {
+    const cleanPath = window.location.pathname.replace(/^\//, '') || 'home';
+    setCurrentHash(cleanPath);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  window.addEventListener('popstate', handlePopState);
+  return () => window.removeEventListener('popstate', handlePopState);
+}, []);
 
   // Keyboard shortcut listener for âŒ˜K or Ctrl+K
   useEffect(() => {
@@ -79,10 +78,11 @@ export default function App() {
   }, []);
 
   const handleNavigate = (route: string) => {
-    const cleanRoute = route.replace(/^#\/?/, '');
-    window.location.hash = `#/${cleanRoute}`;
-    setCurrentHash(cleanRoute);
-  };
+  const cleanRoute = route.replace(/^#\/?/, '');
+  window.history.pushState({}, '', `/${cleanRoute}`);
+  setCurrentHash(cleanRoute);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 
   const handleToggleTheme = () => {
     setIsDark((prev) => !prev);
