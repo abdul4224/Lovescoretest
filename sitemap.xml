@@ -13,25 +13,25 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://lovescoretest.com/about.html</loc>
+    <loc>https://lovescoretest.com/about</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://lovescoretest.com/contact.html</loc>
+    <loc>https://lovescoretest.com/contact</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://lovescoretest.com/privacy-policy.html</loc>
+    <loc>https://lovescoretest.com/privacy</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://lovescoretest.com/terms.html</loc>
+    <loc>https://lovescoretest.com/terms</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>

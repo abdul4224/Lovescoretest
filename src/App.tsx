@@ -103,10 +103,11 @@ export default function App() {
   }, []);
 
   const handleNavigate = (route: string) => {
-    const cleanRoute = route.replace(/^#\/?/, '').replace(/^\//, '');
-    window.location.hash = `#/${cleanRoute}`;
-    setCurrentRoute(cleanRoute);
-  };
+  const cleanRoute = route.replace(/^#\/?/, '').replace(/^\//, '');
+  window.history.pushState({}, '', `/${cleanRoute}`);
+  setCurrentRoute(cleanRoute);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 
   const handleToggleTheme = () => {
     setIsDark((prev) => !prev);
