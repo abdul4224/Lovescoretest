@@ -33,22 +33,30 @@ export default function App() {
   const getInitialRoute = (): string => {
     if (typeof window === 'undefined') return 'home';
 
-    // 1. Check if redirected from GitHub Pages 404 (e.g. ?/tool/love-calculator)
+    // 1. Check if redirected from GitHub Pages 404 (e.g. ?/tool/love-calculator or ?/catalog&category=Love%20Tests)
     if (window.location.search.startsWith('?/')) {
-      const pathFromSearch = window.location.search.slice(2).split('&')[0].replace(/^\//, '');
-      if (pathFromSearch) return pathFromSearch;
+      const decodedSearch = window.location.search
+        .slice(1)
+        .split('&')
+        .map((s) => s.replace(/~and~/g, '&'))
+        .join('?')
+        .replace(/^\/+/, '');
+      if (decodedSearch) return decodedSearch;
     }
 
     // 2. Check hash route (e.g. #/tool/love-calculator)
     if (window.location.hash) {
-      const cleanHash = window.location.hash.replace(/^#\/?/, '');
+      const cleanHash = window.location.hash.replace(/^#\/?/, '').replace(/\/+$/, '');
       if (cleanHash) return cleanHash;
     }
 
-    // 3. Check direct pathname (e.g. /tool/love-calculator)
-    const pathname = window.location.pathname.replace(/^\//, '').replace(/\.html$/, '');
-    if (pathname && pathname !== 'index') {
-      return pathname;
+    // 3. Check direct pathname + search (e.g. /tool/love-calculator or /catalog?category=Love%20Tests)
+    const pathname = window.location.pathname.replace(/^\/+/, '').replace(/\/+$/, '').replace(/\.html$/, '');
+    const search = window.location.search && !window.location.search.startsWith('?/') ? window.location.search : '';
+    const fullRoute = pathname + search;
+
+    if (fullRoute && fullRoute !== 'index' && fullRoute !== 'home') {
+      return fullRoute;
     }
 
     return 'home';
@@ -103,11 +111,12 @@ export default function App() {
   }, []);
 
   const handleNavigate = (route: string) => {
-  const cleanRoute = route.replace(/^#\/?/, '').replace(/^\//, '');
-  window.history.pushState({}, '', `/${cleanRoute}`);
-  setCurrentRoute(cleanRoute);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-};
+    const cleanRoute = route.replace(/^#\/?/, '').replace(/^\/+/, '');
+    const newPath = cleanRoute === 'home' || cleanRoute === '' ? '/' : `/${cleanRoute}`;
+    window.history.pushState({}, '', newPath);
+    setCurrentRoute(cleanRoute || 'home');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleToggleTheme = () => {
     setIsDark((prev) => !prev);
@@ -121,7 +130,7 @@ export default function App() {
   const renderContent = () => {
     // Check if tool detail route: e.g. "tool/love-calculator"
     if (currentRoute.startsWith('tool/')) {
-      const slug = currentRoute.replace('tool/', '').split('?')[0];
+      const slug = currentRoute.replace('tool/', '').split('?')[0].replace(/\/+$/, '');
       const tool = ALL_TOOLS.find((t) => t.slug === slug);
       if (tool) {
         return (
@@ -151,7 +160,8 @@ export default function App() {
     }
 
     // Static pages
-    switch (currentRoute) {
+    const baseRoute = currentRoute.split('?')[0].replace(/\/+$/, '');
+    switch (baseRoute) {
       case 'about':
         return <AboutPage />;
       case 'privacy':
@@ -162,6 +172,7 @@ export default function App() {
       case 'contact':
         return <ContactPage />;
       case 'home':
+      case '':
       default:
         return (
           <HomePage
@@ -215,7 +226,7 @@ export default function App() {
       {/* Site Footer */}
       <Footer onNavigate={handleNavigate} />
 
-      {/* Global Quick Search Modal (âŒ˜K) */}
+      {/* Global Quick Search Modal (⌘K) */}
       <SearchModal
         isOpen={searchOpen}
         onClose={() => setSearchOpen(false)}

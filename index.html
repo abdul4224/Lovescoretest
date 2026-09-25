@@ -3,8 +3,59 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LoveScoreTest â€“ Free Love, Compatibility & Relationship Tools Hub</title>
-    <meta name="description" content="Explore 100+ free love tests, couple compatibility quizzes, relationship calculators, love language tests, and fun couple games. No sign-up required." />
+    <!-- Global fetch setter compatibility patch for environments where window.fetch has only a getter -->
+    <script>
+      (function() {
+        try {
+          var originalFetch = window.fetch;
+          var desc = Object.getOwnPropertyDescriptor(window, 'fetch');
+          var proto = window.Window ? window.Window.prototype : Object.getPrototypeOf(window);
+          var protoDesc = proto ? Object.getOwnPropertyDescriptor(proto, 'fetch') : null;
+
+          var needsSetter = false;
+          if (desc && !desc.set && (desc.get || !desc.writable)) {
+            needsSetter = true;
+          } else if (!desc && protoDesc && !protoDesc.set && (protoDesc.get || !protoDesc.writable)) {
+            needsSetter = true;
+          }
+
+          if (needsSetter) {
+            try {
+              Object.defineProperty(window, 'fetch', {
+                get: function() { return originalFetch; },
+                set: function(val) { originalFetch = val; },
+                configurable: true,
+                enumerable: true
+              });
+            } catch (e1) {
+              if (proto) {
+                try {
+                  Object.defineProperty(proto, 'fetch', {
+                    get: function() { return originalFetch; },
+                    set: function(val) { originalFetch = val; },
+                    configurable: true,
+                    enumerable: true
+                  });
+                } catch (e2) {}
+              }
+            }
+          }
+        } catch (err) {}
+
+        // Capture-phase error listener to gracefully prevent third-party ad script unhandled fetch errors
+        window.addEventListener('error', function(event) {
+          if (event && event.message && event.message.indexOf('fetch') !== -1 && event.message.indexOf('getter') !== -1) {
+            event.preventDefault();
+            if (typeof event.stopImmediatePropagation === 'function') {
+              event.stopImmediatePropagation();
+            }
+            return true;
+          }
+        }, true);
+      })();
+    </script>
+    <title>LoveScoreTest – Free Love, Compatibility & Relationship Tools Hub</title>
+    <meta name="description" content="Free Love, Compatibility & Relationship Tools. Explore 100+ love tests, quizzes, games, and relationship calculators." />
     <link rel="canonical" href="https://lovescoretest.com/" />
     <link rel="icon" type="image/svg+xml" href="/lovescoretest-icon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -16,8 +67,9 @@
           var decoded = l.search.slice(1).split('&').map(function(s) {
             return s.replace(/~and~/g, '&');
           }).join('?');
+          var basePath = l.pathname.endsWith('/') ? l.pathname.slice(0, -1) : l.pathname.replace(/\/index\.html$/, '');
           window.history.replaceState(null, null,
-            l.pathname.slice(0, -1) + decoded + l.hash
+            basePath + decoded + l.hash
           );
         }
       }(window.location));
@@ -26,36 +78,29 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://lovescoretest.com/" />
-    <meta property="og:title" content="LoveScoreTest â€“ Free Love, Compatibility & Relationship Tools" />
-    <meta property="og:description" content="Discover, compare, and connect with 100+ free relationship tools, calculators, and couple tests. 100% free and privacy-focused." />
+    <meta property="og:title" content="LoveScoreTest – Free Love, Compatibility & Relationship Tools Hub" />
+    <meta property="og:description" content="Free Love, Compatibility & Relationship Tools. Explore 100+ love tests, quizzes, games, and relationship calculators." />
     <meta property="og:site_name" content="LoveScoreTest" />
     <meta property="og:image" content="https://lovescoretest.com/og-image.png" />
-<script type="text/javascript">
-  (function(l) {
-    if (l.search[1] === '/') {
-      var decoded = l.search.slice(1).split('&').map(function(s) {
-        return s.replace(/~and~/g, '&')
-      }).join('?');
-      window.history.replaceState(null, null,
-        l.pathname.slice(0, -1) + decoded + l.hash
-      );
-    }
-  }(window.location));
-</script>
+
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="LoveScoreTest â€“ Free Love, Compatibility & Relationship Tools" />
-    <meta name="twitter:description" content="Discover, compare, and connect with 100+ free relationship tools, calculators, and couple tests." />
+    <meta name="twitter:title" content="LoveScoreTest – Free Love, Compatibility & Relationship Tools Hub" />
+    <meta name="twitter:description" content="Free Love, Compatibility & Relationship Tools. Explore 100+ love tests, quizzes, games, and relationship calculators." />
     <meta name="twitter:image" content="https://lovescoretest.com/og-image.png" />
 
     <!-- Preconnect Adsterra CDN -->
     <link rel="dns-prefetch" href="https://www.highrevenueformat.com" />
     <link rel="preconnect" href="https://www.highrevenueformat.com" crossorigin />
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Non-blocking performance loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap">
+    </noscript>
 
     <!-- Structured Data (Schema.org) -->
     <script type="application/ld+json">
@@ -75,9 +120,9 @@
     }
     </script>
 
-      <script type="module" crossorigin src="/assets/index-Clys8ekm.js"></script>
-      <link rel="stylesheet" crossorigin href="/assets/index-C508DsgQ.css">
-    </head>
+                <script type="module" crossorigin src="/assets/index-DHrO9rYJ.js"></script>
+                <link rel="stylesheet" crossorigin href="/assets/index-C508DsgQ.css">
+              </head>
   <body class="bg-[#fafbfc] text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased selection:bg-pink-500 selection:text-white min-h-screen">
     <div id="root"></div>
   </body>

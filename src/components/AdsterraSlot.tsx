@@ -99,7 +99,7 @@ const AD_UNITS: Record<AdSlotType, AdUnitConfig | { desktop: AdUnitConfig; mobil
 };
 
 const generateSrcDoc = (unit: AdUnitConfig) => {
-  return `<!DOCTYPE html><html><head><meta charset="utf-8"><base target="_blank"><style>*,*::before,*::after{box-sizing:border-box}html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:transparent;display:flex;align-items:center;justify-content:center}</style></head><body><script type="text/javascript">atOptions={'key':'${unit.key}','format':'iframe','height':${unit.height},'width':${unit.width},'params':{}};</script><script type="text/javascript" src="${unit.invokeSrc}" async defer></script></body></html>`;
+  return `<!DOCTYPE html><html><head><meta charset="utf-8"><base target="_blank"><style>*,*::before,*::after{box-sizing:border-box}html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:transparent;display:flex;align-items:center;justify-content:center}</style><script type="text/javascript">(function(){try{var _f=window.fetch;Object.defineProperty(window,'fetch',{get:function(){return _f;},set:function(v){_f=v;},configurable:true,enumerable:true});}catch(e){}window.addEventListener('error',function(e){if(e&&e.message&&e.message.indexOf('fetch')!==-1){e.preventDefault();return true;}},true);})();</script></head><body><script type="text/javascript">atOptions={'key':'${unit.key}','format':'iframe','height':${unit.height},'width':${unit.width},'params':{}};</script><script type="text/javascript" src="${unit.invokeSrc}" async defer></script></body></html>`;
 };
 
 export const AdsterraSlot: React.FC<AdsterraSlotProps> = ({ slot, className = '' }) => {
@@ -180,6 +180,7 @@ export const AdsterraSlot: React.FC<AdsterraSlotProps> = ({ slot, className = ''
             height={unit.height}
             loading={isAboveTheFold ? 'eager' : 'lazy'}
             scrolling="no"
+            sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox allow-same-origin"
             className="w-full border-0 overflow-hidden block"
             style={{
               maxWidth: `${unit.width}px`,
