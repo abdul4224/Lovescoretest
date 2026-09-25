@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "vite build && cp -f dist/assets/* assets/",
+    "build": "vite build && powershell -NoProfile -Command \"Copy-Item -Path 'dist/assets/*' -Destination 'assets/' -Force; Copy-Item -Path 'dist/index.html' -Destination 'index.html' -Force\"",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"

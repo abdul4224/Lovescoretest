@@ -47,52 +47,76 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <button
-                  onClick={() => onNavigate('tool/love-calculator')}
+                <a
+                  href="/tool/love-calculator"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('tool/love-calculator');
+                  }}
                   className="text-slate-600 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 transition-colors"
                 >
                   Love Calculator
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('tool/love-compatibility-test')}
+                <a
+                  href="/tool/love-compatibility-test"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('tool/love-compatibility-test');
+                  }}
                   className="text-slate-600 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 transition-colors"
                 >
                   Love Compatibility Test
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('tool/love-language-test')}
+                <a
+                  href="/tool/love-language-test"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('tool/love-language-test');
+                  }}
                   className="text-slate-600 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 transition-colors"
                 >
                   Love Language Test
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('tool/couple-compatibility-quiz')}
+                <a
+                  href="/tool/couple-compatibility-quiz"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('tool/couple-compatibility-quiz');
+                  }}
                   className="text-slate-600 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 transition-colors"
                 >
                   Couple Compatibility Quiz
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('tool/relationship-duration-calculator')}
+                <a
+                  href="/tool/relationship-duration-calculator"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('tool/relationship-duration-calculator');
+                  }}
                   className="text-slate-600 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 transition-colors"
                 >
                   Relationship Duration
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('tool/days-together-counter')}
+                <a
+                  href="/tool/days-together-calculator"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('tool/days-together-calculator');
+                  }}
                   className="text-slate-600 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 transition-colors"
                 >
                   Days Together Counter
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -105,22 +129,30 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-2 text-xs">
               {TOOL_PHASES.slice(0, 5).map((phase) => (
                 <li key={phase.phase}>
-                  <button
-                    onClick={() => onNavigate(`catalog?phase=${phase.phase}`)}
-                    className="text-slate-600 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 transition-colors text-left"
+                  <a
+                    href={`/catalog?phase=${phase.phase}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate(`catalog?phase=${phase.phase}`);
+                    }}
+                    className="text-slate-600 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 transition-colors text-left block"
                   >
                     {phase.name}
-                  </button>
+                  </a>
                 </li>
               ))}
               <li>
-                <button
-                  onClick={() => onNavigate('catalog')}
+                <a
+                  href="/catalog"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('catalog');
+                  }}
                   className="text-pink-600 dark:text-pink-400 font-semibold hover:underline flex items-center gap-1"
                 >
                   <span>View All 100 Tools</span>
                   <ArrowUpRight className="w-3 h-3" />
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -132,36 +164,52 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <button
-                  onClick={() => onNavigate('about')}
+                <a
+                  href="/about"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('about');
+                  }}
                   className="text-slate-600 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 transition-colors"
                 >
                   About Us
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('privacy')}
+                <a
+                  href="/privacy"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('privacy');
+                  }}
                   className="text-slate-600 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 transition-colors"
                 >
                   Privacy Policy
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('terms')}
+                <a
+                  href="/terms"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('terms');
+                  }}
                   className="text-slate-600 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 transition-colors"
                 >
                   Terms of Service
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('contact')}
+                <a
+                  href="/contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('contact');
+                  }}
                   className="text-slate-600 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-400 transition-colors"
                 >
                   Contact & Support
-                </button>
+                </a>
               </li>
               <li>
                 <a

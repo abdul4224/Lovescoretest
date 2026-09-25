@@ -122,6 +122,35 @@ export const AdsterraSlot: React.FC<AdsterraSlotProps> = ({ slot, className = ''
     ? (isDesktop ? slotEntry.desktop : slotEntry.mobile)
     : slotEntry;
 
+  // Above the fold slots load eagerly; below-the-fold slots load when within 250px of viewport
+  const isAboveTheFold = slot === 'homepage_top' || slot === 'tool_top' || slot === 'sidebar_left' || slot === 'sidebar_right';
+  const [shouldLoad, setShouldLoad] = useState<boolean>(isAboveTheFold);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isAboveTheFold || shouldLoad) return;
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+      setShouldLoad(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '250px' }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isAboveTheFold, shouldLoad]);
+
   const srcDoc = useMemo(
     () => generateSrcDoc(unit),
     [unit.key, unit.width, unit.height, unit.invokeSrc]
@@ -129,31 +158,35 @@ export const AdsterraSlot: React.FC<AdsterraSlotProps> = ({ slot, className = ''
 
   return (
     <div
+      ref={containerRef}
       className={`w-full my-6 mx-auto flex justify-center ${className}`}
       aria-label="Advertisement"
     >
       <div
-        className="relative flex items-center justify-center overflow-hidden rounded-lg"
+        className="relative flex items-center justify-center overflow-hidden rounded-lg bg-transparent"
         style={{
           width: '100%',
           maxWidth: `${unit.width}px`,
+          height: `${unit.height}px`,
           minHeight: `${unit.height}px`,
         }}
       >
-        <iframe
-          key={`${slot}-${unit.key}`}
-          title={`Advertisement ${unit.width}x${unit.height}`}
-          srcDoc={srcDoc}
-          width={unit.width}
-          height={unit.height}
-          loading="eager"
-          scrolling="no"
-          className="w-full border-0 overflow-hidden block"
-          style={{
-            maxWidth: `${unit.width}px`,
-            height: `${unit.height}px`,
-          }}
-        />
+        {shouldLoad ? (
+          <iframe
+            key={`${slot}-${unit.key}`}
+            title={`Advertisement ${unit.width}x${unit.height}`}
+            srcDoc={srcDoc}
+            width={unit.width}
+            height={unit.height}
+            loading={isAboveTheFold ? 'eager' : 'lazy'}
+            scrolling="no"
+            className="w-full border-0 overflow-hidden block"
+            style={{
+              maxWidth: `${unit.width}px`,
+              height: `${unit.height}px`,
+            }}
+          />
+        ) : null}
       </div>
     </div>
   );

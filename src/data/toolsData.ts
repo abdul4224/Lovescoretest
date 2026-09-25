@@ -1,4 +1,5 @@
 import { RawToolItem, ToolItem } from '../types';
+import { getToolSeoConfig } from './toolsSeoData';
 
 export const PHASE_NAMES: Record<number, string> = {
   1: 'PHASE 1 — LOVE CALCULATORS',
@@ -1888,15 +1889,18 @@ export const TOOL_PHASES = [
   { phase: 6, name: 'Relationship Calculators' },
 ];
 
-export const ALL_TOOLS: ToolItem[] = TOOLS_DATA.map((t) => ({
-  ...t,
-  title: t.name,
-  slug: t.id,
-  isAvailable: t.isFunctional,
-  overview: t.detailedOverview,
-  instructions: t.howItWorks,
-  metaTitle: `${t.name} - Free Online Couple Tool`,
-  metaDescription: t.description,
-}));
+export const ALL_TOOLS: ToolItem[] = TOOLS_DATA.map((t) => {
+  const seo = getToolSeoConfig(t.id);
+  return {
+    ...t,
+    title: t.name,
+    slug: t.id,
+    isAvailable: t.isFunctional,
+    overview: t.detailedOverview,
+    instructions: t.howItWorks,
+    metaTitle: seo.title,
+    metaDescription: seo.metaDescription,
+  };
+});
 
 

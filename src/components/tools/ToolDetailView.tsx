@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { ArrowLeft, Share2, Sparkles, Heart, Clock, Shield, CheckCircle2, ChevronRight } from 'lucide-react';
+import { Sparkles, ChevronRight } from 'lucide-react';
 import { ToolItem, ShareData } from '../../types';
 import { ALL_TOOLS } from '../../data/toolsData';
+import { getToolSeoConfig } from '../../data/toolsSeoData';
 import { AdsterraSlot } from '../AdsterraSlot';
 import { FAQAccordion } from '../FAQAccordion';
 
@@ -29,14 +30,127 @@ export const ToolDetailView: React.FC<ToolDetailViewProps> = ({
   onNavigate,
   onShare,
 }) => {
-  // Synchronize document title for SEO
+  const seo = getToolSeoConfig(tool.slug);
+
+  // Synchronize document title, meta tags, and structured data for tool-specific SEO
   useEffect(() => {
-    document.title = `${tool.metaTitle} | LoveScoreTest.com`;
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', tool.metaDescription);
+    // 1. Page Title
+    document.title = seo.title;
+
+    // Helper to safely set or create meta tag
+    const setMetaTag = (attr: string, key: string, content: string) => {
+      let el = document.querySelector(`meta[${attr}="${key}"]`);
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(attr, key);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', content);
+    };
+
+    // Helper to safely set or create link tag
+    const setLinkTag = (rel: string, href: string) => {
+      let el = document.querySelector(`link[rel="${rel}"]`);
+      if (!el) {
+        el = document.createElement('link');
+        el.setAttribute(rel, rel);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('href', href);
+    };
+
+    // 2. Standard Meta & Canonical
+    setMetaTag('name', 'description', seo.metaDescription);
+    setLinkTag('canonical', seo.canonicalUrl);
+
+    // 3. Open Graph
+    setMetaTag('property', 'og:type', 'website');
+    setMetaTag('property', 'og:title', seo.ogTitle);
+    setMetaTag('property', 'og:description', seo.ogDescription);
+    setMetaTag('property', 'og:url', seo.canonicalUrl);
+    setMetaTag('property', 'og:site_name', 'LoveScoreTest');
+
+    // 4. Twitter / X Card
+    setMetaTag('name', 'twitter:card', 'summary_large_image');
+    setMetaTag('name', 'twitter:title', seo.twitterTitle);
+    setMetaTag('name', 'twitter:description', seo.twitterDescription);
+
+    // 5. Schema.org Structured Data (JSON-LD)
+    const existingScripts = document.querySelectorAll('script[data-tool-seo="true"]');
+    existingScripts.forEach((s) => s.remove());
+
+    const injectJsonLd = (id: string, data: object) => {
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.setAttribute('data-tool-seo', 'true');
+      script.id = id;
+      script.textContent = JSON.stringify(data);
+      document.head.appendChild(script);
+    };
+
+    // BreadcrumbList Structured Data
+    injectJsonLd('tool-schema-breadcrumb', {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        {
+          '@type': 'ListItem',
+          'position': 1,
+          'name': 'Home',
+          'item': 'https://lovescoretest.com/'
+        },
+        {
+          '@type': 'ListItem',
+          'position': 2,
+          'name': tool.category,
+          'item': `https://lovescoretest.com/catalog?category=${encodeURIComponent(tool.category)}`
+        },
+        {
+          '@type': 'ListItem',
+          'position': 3,
+          'name': tool.title,
+          'item': seo.canonicalUrl
+        }
+      ]
+    });
+
+    // WebApplication Structured Data
+    injectJsonLd('tool-schema-webapp', {
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      'name': tool.title,
+      'url': seo.canonicalUrl,
+      'applicationCategory': 'LifestyleApplication',
+      'operatingSystem': 'All',
+      'description': seo.metaDescription,
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'USD'
+      }
+    });
+
+    // FAQPage Structured Data (Only injected when FAQs exist on the visible page)
+    if (tool.faqs && tool.faqs.length > 0) {
+      injectJsonLd('tool-schema-faq', {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        'mainEntity': tool.faqs.map((f) => ({
+          '@type': 'Question',
+          'name': f.question,
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': f.answer
+          }
+        }))
+      });
     }
-  }, [tool]);
+
+    return () => {
+      const scripts = document.querySelectorAll('script[data-tool-seo="true"]');
+      scripts.forEach((s) => s.remove());
+    };
+  }, [tool, seo]);
 
   // Find 4 related tools in the same category or phase
   const relatedTools = ALL_TOOLS.filter(
@@ -60,10 +174,12 @@ export const ToolDetailView: React.FC<ToolDetailViewProps> = ({
         return <LoveLanguageCompatibilityTool onShare={onShare} />;
       case 'how-well-do-you-know-your-partner':
         return <PartnerKnowledgeQuizTool onShare={onShare} />;
+      case 'who-is-more-likely-couples':
       case 'who-is-more-likely-to':
         return <WhoIsMoreLikelyTool onShare={onShare} />;
       case 'relationship-duration-calculator':
         return <RelationshipDurationTool onShare={onShare} />;
+      case 'days-together-calculator':
       case 'days-together-counter':
         return <DaysTogetherTool onShare={onShare} />;
       default:
@@ -73,28 +189,44 @@ export const ToolDetailView: React.FC<ToolDetailViewProps> = ({
 
   return (
     <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
-      {/* Breadcrumb navigation */}
-      <nav className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-6 flex-wrap">
-        <button
-          onClick={() => onNavigate('home')}
-          className="hover:text-pink-600 dark:hover:text-pink-400 transition-colors"
-        >
-          Home
-        </button>
-        <ChevronRight className="w-3.5 h-3.5" />
-        <button
-          onClick={() => onNavigate(`catalog?category=${encodeURIComponent(tool.category)}`)}
-          className="hover:text-pink-600 dark:hover:text-pink-400 transition-colors"
-        >
-          {tool.category}
-        </button>
-        <ChevronRight className="w-3.5 h-3.5" />
-        <span className="text-slate-800 dark:text-slate-200 font-semibold truncate max-w-[200px]">
-          {tool.title}
-        </span>
+      {/* Crawlable Breadcrumb Navigation */}
+      <nav className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-6 flex-wrap" aria-label="Breadcrumb">
+        <ol className="flex items-center gap-2 flex-wrap">
+          <li className="flex items-center gap-2">
+            <a
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('home');
+              }}
+              className="hover:text-pink-600 dark:hover:text-pink-400 transition-colors"
+            >
+              Home
+            </a>
+            <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />
+          </li>
+          <li className="flex items-center gap-2">
+            <a
+              href={`/catalog?category=${encodeURIComponent(tool.category)}`}
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate(`catalog?category=${encodeURIComponent(tool.category)}`);
+              }}
+              className="hover:text-pink-600 dark:hover:text-pink-400 transition-colors"
+            >
+              {tool.category}
+            </a>
+            <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />
+          </li>
+          <li className="flex items-center">
+            <span className="text-slate-800 dark:text-slate-200 font-semibold truncate max-w-[240px]" aria-current="page">
+              {tool.title}
+            </span>
+          </li>
+        </ol>
       </nav>
 
-      {/* Header section */}
+      {/* Header section with Unique H1 */}
       <div className="text-center max-w-3xl mx-auto mb-8">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-100 dark:bg-pink-950/60 text-pink-600 dark:text-pink-300 text-xs font-bold mb-3">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -102,7 +234,7 @@ export const ToolDetailView: React.FC<ToolDetailViewProps> = ({
         </div>
 
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
-          {tool.title}
+          {seo.h1}
         </h1>
 
         <p className="text-sm sm:text-base text-slate-700 dark:text-slate-200 mt-3 max-w-2xl mx-auto leading-relaxed">
@@ -161,7 +293,7 @@ export const ToolDetailView: React.FC<ToolDetailViewProps> = ({
         )}
       </div>
 
-      {/* Related Tools Section */}
+      {/* Crawlable Related Tools Section */}
       {relatedTools.length > 0 && (
         <div className="my-12">
           <div className="flex items-center justify-between mb-6">
@@ -173,20 +305,28 @@ export const ToolDetailView: React.FC<ToolDetailViewProps> = ({
                 Explore more relationship calculators and intimacy quizzes
               </p>
             </div>
-            <button
-              onClick={() => onNavigate('catalog')}
+            <a
+              href="/catalog"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('catalog');
+              }}
               className="text-xs font-bold text-pink-600 dark:text-pink-400 hover:underline flex items-center gap-1"
             >
               <span>View All 100</span>
               <ChevronRight className="w-3.5 h-3.5" />
-            </button>
+            </a>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {relatedTools.map((rel) => (
-              <div
+              <a
                 key={rel.id}
-                onClick={() => onNavigate(`tool/${rel.slug}`)}
+                href={`/tool/${rel.slug}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(`tool/${rel.slug}`);
+                }}
                 className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-pink-300 dark:hover:border-pink-600 hover:shadow-md transition-all cursor-pointer group flex flex-col justify-between"
               >
                 <div>
@@ -204,7 +344,7 @@ export const ToolDetailView: React.FC<ToolDetailViewProps> = ({
                   <span>{rel.isAvailable ? 'Try Tool Free' : 'Coming Soon'}</span>
                   <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>

@@ -29,13 +29,33 @@ export default function App() {
     return false;
   });
 
-  // Routing state based on window.location.hash
-  const [currentHash, setCurrentHash] = useState<string>(() => {
-    if (typeof window !== 'undefined') {
-      return window.location.hash.replace(/^\/?/, '') || 'home';
+  // Helper to extract clean route from window.location
+  const getInitialRoute = (): string => {
+    if (typeof window === 'undefined') return 'home';
+
+    // 1. Check if redirected from GitHub Pages 404 (e.g. ?/tool/love-calculator)
+    if (window.location.search.startsWith('?/')) {
+      const pathFromSearch = window.location.search.slice(2).split('&')[0].replace(/^\//, '');
+      if (pathFromSearch) return pathFromSearch;
     }
+
+    // 2. Check hash route (e.g. #/tool/love-calculator)
+    if (window.location.hash) {
+      const cleanHash = window.location.hash.replace(/^#\/?/, '');
+      if (cleanHash) return cleanHash;
+    }
+
+    // 3. Check direct pathname (e.g. /tool/love-calculator)
+    const pathname = window.location.pathname.replace(/^\//, '').replace(/\.html$/, '');
+    if (pathname && pathname !== 'index') {
+      return pathname;
+    }
+
     return 'home';
-  });
+  };
+
+  // Routing state
+  const [currentRoute, setCurrentRoute] = useState<string>(getInitialRoute);
 
   // Search modal state
   const [searchOpen, setSearchOpen] = useState(false);
@@ -54,18 +74,23 @@ export default function App() {
     }
   }, [isDark]);
 
-  // Listen to hash changes for routing
+  // Listen to hash and popstate changes for routing
   useEffect(() => {
-  const handlePopState = () => {
-    const cleanPath = window.location.pathname.replace(/^\//, '') || 'home';
-    setCurrentHash(cleanPath);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-  window.addEventListener('popstate', handlePopState);
-  return () => window.removeEventListener('popstate', handlePopState);
-}, []);
+    const handleLocationChange = () => {
+      const route = getInitialRoute();
+      setCurrentRoute(route);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
-  // Keyboard shortcut listener for âŒ˜K or Ctrl+K
+    window.addEventListener('hashchange', handleLocationChange);
+    window.addEventListener('popstate', handleLocationChange);
+    return () => {
+      window.removeEventListener('hashchange', handleLocationChange);
+      window.removeEventListener('popstate', handleLocationChange);
+    };
+  }, []);
+
+  // Keyboard shortcut listener for ⌘K or Ctrl+K
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -78,11 +103,10 @@ export default function App() {
   }, []);
 
   const handleNavigate = (route: string) => {
-  const cleanRoute = route.replace(/^#\/?/, '');
-  window.history.pushState({}, '', `/${cleanRoute}`);
-  setCurrentHash(cleanRoute);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-};
+    const cleanRoute = route.replace(/^#\/?/, '').replace(/^\//, '');
+    window.location.hash = `#/${cleanRoute}`;
+    setCurrentRoute(cleanRoute);
+  };
 
   const handleToggleTheme = () => {
     setIsDark((prev) => !prev);
@@ -95,8 +119,8 @@ export default function App() {
   // Route parser
   const renderContent = () => {
     // Check if tool detail route: e.g. "tool/love-calculator"
-    if (currentHash.startsWith('tool/')) {
-      const slug = currentHash.replace('tool/', '').split('?')[0];
+    if (currentRoute.startsWith('tool/')) {
+      const slug = currentRoute.replace('tool/', '').split('?')[0];
       const tool = ALL_TOOLS.find((t) => t.slug === slug);
       if (tool) {
         return (
@@ -110,8 +134,8 @@ export default function App() {
     }
 
     // Check catalog with query parameters: e.g. "catalog?category=Love%20Tests"
-    if (currentHash.startsWith('catalog')) {
-      const queryPart = currentHash.includes('?') ? currentHash.split('?')[1] : '';
+    if (currentRoute.startsWith('catalog') || currentRoute.startsWith('all-tools')) {
+      const queryPart = currentRoute.includes('?') ? currentRoute.split('?')[1] : '';
       const params = new URLSearchParams(queryPart);
       const categoryParam = params.get('category');
       const phaseParam = params.get('phase') ? parseInt(params.get('phase')!, 10) : null;
@@ -126,10 +150,11 @@ export default function App() {
     }
 
     // Static pages
-    switch (currentHash) {
+    switch (currentRoute) {
       case 'about':
         return <AboutPage />;
       case 'privacy':
+      case 'privacy-policy':
         return <PrivacyPage />;
       case 'terms':
         return <TermsPage />;
@@ -150,7 +175,7 @@ export default function App() {
     <div className="min-h-screen flex flex-col bg-slate-50/50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans transition-colors selection:bg-pink-500 selection:text-white">
       {/* Top Navigation Header */}
       <Navbar
-        currentRoute={currentHash}
+        currentRoute={currentRoute}
         onNavigate={handleNavigate}
         isDark={isDark}
         onToggleTheme={handleToggleTheme}
@@ -159,7 +184,7 @@ export default function App() {
 
       {/* Main Page Content */}
       <div className="relative">
-        {currentHash.startsWith('tool/') && (
+        {currentRoute.startsWith('tool/') && (
           <>
             <aside
               className="hidden md:block fixed top-28 left-0 xl:left-6 2xl:left-[max(1rem,calc(50%-760px))] z-30 w-[160px]"
