@@ -53,7 +53,7 @@ export const ToolDetailView: React.FC<ToolDetailViewProps> = ({
       let el = document.querySelector(`link[rel="${rel}"]`);
       if (!el) {
         el = document.createElement('link');
-        el.setAttribute(rel, rel);
+        el.setAttribute('rel', rel);
         document.head.appendChild(el);
       }
       el.setAttribute('href', href);

@@ -1728,6 +1728,11 @@ export const TOOLS_SEO_DATA: Record<string, ToolSeoConfig> = {
 };
 
 export function getToolSeoConfig(slug: string): ToolSeoConfig {
+  const cfg = getRawToolSeoConfig(slug);
+  return { ...cfg, canonicalUrl: cfg.canonicalUrl.replace(/\/?$/, '/') };
+}
+
+function getRawToolSeoConfig(slug: string): ToolSeoConfig {
   if (TOOLS_SEO_DATA[slug]) {
     return TOOLS_SEO_DATA[slug];
   }

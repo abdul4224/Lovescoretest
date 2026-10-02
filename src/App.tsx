@@ -17,6 +17,9 @@ const PrivacyPage = lazy(() => import('./components/pages/PrivacyPage').then(m =
 const TermsPage = lazy(() => import('./components/pages/TermsPage').then(m => ({ default: m.TermsPage })));
 const ContactPage = lazy(() => import('./components/pages/ContactPage').then(m => ({ default: m.ContactPage })));
 const ToolDetailView = lazy(() => import('./components/tools/ToolDetailView').then(m => ({ default: m.ToolDetailView })));
+if (typeof window !== 'undefined' && window.location.pathname.startsWith('/tool/')) {
+  void import('./components/tools/ToolDetailView');
+}
 const SearchModal = lazy(() => import('./components/SearchModal').then(m => ({ default: m.SearchModal })));
 const SocialShareModal = lazy(() => import('./components/SocialShareModal').then(m => ({ default: m.SocialShareModal })));
 

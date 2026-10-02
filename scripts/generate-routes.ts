@@ -103,7 +103,8 @@ if (!fs.existsSync(distToolDir)) {
 let generatedCount = 0;
 
 for (const tool of ALL_TOOLS) {
-  const seo = getToolSeoConfig(tool.slug);
+  const baseSeo = getToolSeoConfig(tool.slug);
+  const seo = { ...baseSeo, canonicalUrl: baseSeo.canonicalUrl.replace(/\/?$/, '/') };
 
   const breadcrumbListSchema = {
     '@context': 'https://schema.org',
@@ -184,7 +185,7 @@ if (!fs.existsSync(distCatalogDir)) {
 const catalogSeo = {
   title: 'All 100 Love, Compatibility & Relationship Tools | LoveScoreTest Catalog',
   metaDescription: 'Explore our complete directory of 100 relationship calculators, compatibility quizzes, love tests, and couple games.',
-  canonicalUrl: 'https://lovescoretest.com/catalog',
+  canonicalUrl: 'https://lovescoretest.com/catalog/',
   ogTitle: 'All 100 Love, Compatibility & Relationship Tools | LoveScoreTest Catalog',
   ogDescription: 'Explore our complete directory of 100 relationship calculators, compatibility quizzes, love tests, and couple games.',
   twitterTitle: 'All 100 Love, Compatibility & Relationship Tools | LoveScoreTest Catalog',
@@ -196,7 +197,7 @@ const catalogSchema = [
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     'name': 'LoveScoreTest Tools Catalog',
-    'url': 'https://lovescoretest.com/catalog',
+    'url': 'https://lovescoretest.com/catalog/',
     'description': 'Directory of 100 relationship calculators, love compatibility tests, and couples quizzes.'
   }
 ];
