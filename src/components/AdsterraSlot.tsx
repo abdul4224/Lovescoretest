@@ -160,6 +160,7 @@ export const AdsterraSlot: React.FC<AdsterraSlotProps> = ({ slot, className = ''
     <div
       ref={containerRef}
       className={`w-full my-6 mx-auto flex justify-center ${className}`}
+      role="region"
       aria-label="Advertisement"
     >
       <div

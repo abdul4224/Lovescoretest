@@ -21,7 +21,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <Heart className="w-5 h-5 fill-white" />
               </div>
               <span className="text-xl font-black text-slate-900 dark:text-white">
-                LoveScore<span className="text-pink-600 dark:text-pink-400">Test</span>.com
+                LoveScore<span className="text-pink-700 dark:text-pink-400">Test</span>.com
               </span>
             </button>
 
@@ -29,7 +29,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               The internet’s premier free relationship tools hub. Built for real couples, curious hearts, and best friends to test compatibility, spark conversation, and celebrate love milestones.
             </p>
 
-            <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 pt-1">
+            <div className="flex items-center gap-3 text-xs text-slate-600 dark:text-slate-400 pt-1">
               <span className="flex items-center gap-1">
                 <Shield className="w-3.5 h-3.5 text-emerald-500" /> 100% Client-Side Private
               </span>
@@ -42,9 +42,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* Popular Tools Links */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
               Popular Tools
-            </h4>
+            </h2>
             <ul className="space-y-2 text-xs">
               <li>
                 <a
@@ -123,9 +123,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* 100 Tools */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
               100 Tools
-            </h4>
+            </h2>
             <ul className="space-y-2 text-xs">
               {TOOL_PHASES.slice(0, 5).map((phase) => (
                 <li key={phase.phase}>
@@ -148,7 +148,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                     e.preventDefault();
                     onNavigate('catalog');
                   }}
-                  className="text-pink-600 dark:text-pink-400 font-semibold hover:underline flex items-center gap-1"
+                  className="text-pink-700 dark:text-pink-400 font-semibold hover:underline flex items-center gap-1"
                 >
                   <span>View All 100 Tools</span>
                   <ArrowUpRight className="w-3 h-3" />
@@ -159,9 +159,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* Legal & Pages */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
               Information & Legal
-            </h4>
+            </h2>
             <ul className="space-y-2 text-xs">
               <li>
                 <a
@@ -226,7 +226,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
 
         {/* Disclaimer and Copyright */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400 dark:text-slate-500">
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-600 dark:text-slate-400">
           <p className="text-center md:text-left">
             © {new Date().getFullYear()} LoveScoreTest.com. All rights reserved. Free love & couple tools for personal entertainment.
           </p>

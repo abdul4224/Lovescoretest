@@ -95,7 +95,7 @@ export const LiveVisitorCounter: React.FC = () => {
             <div className="flex items-center gap-2 self-start sm:self-auto px-3.5 py-1.5 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xs">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
               <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                <span className="text-emerald-600 dark:text-emerald-400 font-extrabold">{activeNow}</span> People Online Now
+                <span className="text-emerald-700 dark:text-emerald-400 font-extrabold">{activeNow}</span> People Online Now
               </span>
             </div>
           </div>
@@ -104,17 +104,17 @@ export const LiveVisitorCounter: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 pt-6">
             {/* Total Visitors Card */}
             <div className="p-5 rounded-2xl bg-white dark:bg-slate-800/80 border border-pink-100 dark:border-slate-700/80 shadow-xs flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-pink-100 dark:bg-pink-950/80 text-pink-600 dark:text-pink-400 flex items-center justify-center shrink-0">
+              <div className="w-12 h-12 rounded-2xl bg-pink-100 dark:bg-pink-950/80 text-pink-700 dark:text-pink-400 flex items-center justify-center shrink-0">
                 <Users className="w-6 h-6" />
               </div>
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">
                   Total Website Visitors
                 </span>
                 <div className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
                   {totalVisitors.toLocaleString()}
                 </div>
-                <span className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400 flex items-center gap-1 mt-0.5">
+                <span className="text-[10px] font-medium text-emerald-700 dark:text-emerald-400 flex items-center gap-1 mt-0.5">
                   <TrendingUp className="w-3 h-3" /> Real-time active counter
                 </span>
               </div>
@@ -126,13 +126,13 @@ export const LiveVisitorCounter: React.FC = () => {
                 <Heart className="w-6 h-6 fill-purple-500/20" />
               </div>
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">
                   Compatibility Tests Run
                 </span>
                 <div className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
                   {testsCompleted.toLocaleString()}
                 </div>
-                <span className="text-[10px] font-medium text-slate-500 dark:text-slate-400 mt-0.5 block">
+                <span className="text-[10px] font-medium text-slate-600 dark:text-slate-400 mt-0.5 block">
                   Across all 100 relationship tools
                 </span>
               </div>
@@ -144,13 +144,13 @@ export const LiveVisitorCounter: React.FC = () => {
                 <Sparkles className="w-6 h-6" />
               </div>
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">
                   Avg Couple Compatibility
                 </span>
                 <div className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
                   81.6%
                 </div>
-                <span className="text-[10px] font-medium text-pink-600 dark:text-pink-400 mt-0.5 block">
+                <span className="text-[10px] font-medium text-pink-700 dark:text-pink-400 mt-0.5 block">
                   Based on recent calculations
                 </span>
               </div>

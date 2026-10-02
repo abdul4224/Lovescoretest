@@ -43,7 +43,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="text-lg md:text-xl font-black tracking-tight text-slate-900 dark:text-white flex items-center">
                 LoveScore<span className="text-pink-600 dark:text-pink-400">Test</span>
               </span>
-              <span className="block text-[10px] uppercase font-bold tracking-widest text-slate-400 dark:text-slate-400 -mt-1">
+              <span className="block text-[10px] uppercase font-bold tracking-widest text-slate-600 dark:text-slate-400 -mt-1">
                 Couple & Love Tools
               </span>
             </div>
@@ -55,7 +55,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => handleNav('home')}
               className={`px-3 py-2 text-xs font-semibold rounded-xl transition-colors cursor-pointer ${
                 currentRoute === 'home'
-                  ? 'text-pink-600 dark:text-pink-400 bg-pink-50/80 dark:bg-pink-950/40'
+                  ? 'text-pink-700 dark:text-pink-400 bg-pink-50/80 dark:bg-pink-950/40'
                   : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800/60'
               }`}
             >
@@ -104,12 +104,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Search Trigger Button */}
             <button
               onClick={onOpenSearch}
-              className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/80 dark:hover:bg-slate-700 transition-all text-xs font-medium cursor-pointer"
+              className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/80 dark:hover:bg-slate-700 transition-all text-xs font-medium cursor-pointer"
               aria-label="Search tools"
             >
               <Search className="w-4 h-4 text-pink-500" />
               <span className="hidden sm:inline">Search 100 tools...</span>
-              <kbd className="hidden md:inline-block px-1.5 py-0.5 text-[10px] font-mono bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded text-slate-400">
+              <kbd className="hidden md:inline-block px-1.5 py-0.5 text-[10px] font-mono bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded text-slate-600 dark:text-slate-400">
                 ⌘K
               </kbd>
             </button>

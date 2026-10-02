@@ -96,7 +96,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
             {/* Hero Left Content */}
             <div className="lg:col-span-7 text-center lg:text-left space-y-6">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-100 dark:bg-pink-950/80 border border-pink-200 dark:border-pink-900/60 text-pink-700 dark:text-pink-300 text-xs font-bold shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400 fill-pink-500" />
+                <Sparkles className="w-3.5 h-3.5 text-pink-700 dark:text-pink-400 fill-pink-500" />
                 <span>The Free 100 Relationship Tools Hub</span>
               </div>
 
@@ -127,7 +127,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
                   onClick={() => onNavigate('catalog')}
                   className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 font-bold text-sm md:text-base hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                 >
-                  <Compass className="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                  <Compass className="w-4 h-4 text-pink-700 dark:text-pink-400" />
                   <span>Explore All 100 Tools</span>
                 </button>
               </div>
@@ -143,7 +143,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
                   <span>Instant Results</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Award className="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                  <Award className="w-4 h-4 text-pink-700 dark:text-pink-400" />
                   <span>No Account or Signup Needed</span>
                 </div>
               </div>
@@ -161,13 +161,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
                 <div className="text-center pt-2 pb-4">
                   <div className="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-tr from-pink-500 to-purple-600 p-1 shadow-md shadow-pink-500/25 flex items-center justify-center">
                     <div className="w-full h-full rounded-full bg-pink-50 dark:bg-slate-800 flex items-center justify-center">
-                      <Heart className="w-10 h-10 text-pink-600 dark:text-pink-400 fill-pink-500" />
+                      <Heart className="w-10 h-10 text-pink-700 dark:text-pink-400 fill-pink-500" />
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">
+                  <h2 className="text-xl font-extrabold text-slate-900 dark:text-white">
                     Better Together ♡
-                  </h3>
+                  </h2>
                   <p className="text-xs font-medium text-slate-600 dark:text-slate-300 mt-1">
                     Alex & Taylor • Harmonic Soul Synergy
                   </p>
@@ -178,7 +178,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
                   <div>
                     <div className="flex justify-between text-xs font-bold text-slate-800 dark:text-slate-200 mb-1.5">
                       <span>Love Compatibility</span>
-                      <span className="text-pink-600 dark:text-pink-400 font-extrabold">96%</span>
+                      <span className="text-pink-700 dark:text-pink-400 font-extrabold">96%</span>
                     </div>
                     <div className="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
                       <div className="bg-gradient-to-r from-pink-500 to-rose-500 h-full w-[96%]" />
@@ -222,7 +222,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
           ======================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <span className="text-xs font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400">
+          <span className="text-xs font-bold uppercase tracking-wider text-pink-700 dark:text-pink-400">
             Curated Categories
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-1">
@@ -238,7 +238,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
             {
               name: 'Love Tests',
               icon: Heart,
-              color: 'text-pink-600 dark:text-pink-400',
+              color: 'text-pink-700 dark:text-pink-400',
               bg: 'bg-white dark:bg-slate-900 hover:border-pink-300 dark:hover:border-pink-700',
               count: '16 Tools',
             },
@@ -287,7 +287,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
             {
               name: 'Browse All 100',
               icon: Compass,
-              color: 'text-pink-600 dark:text-pink-400',
+              color: 'text-pink-700 dark:text-pink-400',
               bg: 'bg-gradient-to-tr from-pink-50 to-purple-50 dark:from-slate-900 dark:to-slate-800 hover:border-pink-400 dark:hover:border-pink-600',
               count: 'Full Catalog',
             },
@@ -307,7 +307,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
                   <div className="w-10 h-10 rounded-2xl bg-pink-50 dark:bg-slate-800 shadow-sm flex items-center justify-center">
                     <Icon className={`w-5 h-5 ${cat.color}`} />
                   </div>
-                  <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                  <span className="text-[10px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">
                     {cat.count}
                   </span>
                 </div>
@@ -332,7 +332,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400 flex items-center gap-1.5">
+            <span className="text-xs font-bold uppercase tracking-wider text-pink-700 dark:text-pink-400 flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span>Ready to Play Right Now</span>
             </span>
@@ -346,7 +346,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
           <button
             type="button"
             onClick={() => onNavigate('catalog')}
-            className="text-xs md:text-sm font-bold text-pink-600 dark:text-pink-400 hover:underline flex items-center gap-1 cursor-pointer"
+            className="text-xs md:text-sm font-bold text-pink-700 dark:text-pink-400 hover:underline flex items-center gap-1 cursor-pointer"
           >
             <span>View All 100 in Catalog</span>
             <ArrowRight className="w-4 h-4" />
@@ -380,10 +380,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
               </div>
 
               <div className="mt-5 pt-3.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                <span className="text-xs font-bold text-pink-600 dark:text-pink-400 group-hover:underline">
+                <span className="text-xs font-bold text-pink-700 dark:text-pink-400 group-hover:underline">
                   Start Test Free
                 </span>
-                <div className="w-7 h-7 rounded-xl bg-pink-50 dark:bg-slate-800 text-pink-600 dark:text-pink-400 flex items-center justify-center group-hover:bg-pink-600 group-hover:text-white transition-all">
+                <div className="w-7 h-7 rounded-xl bg-pink-50 dark:bg-slate-800 text-pink-700 dark:text-pink-400 flex items-center justify-center group-hover:bg-pink-600 group-hover:text-white transition-all">
                   <ChevronRight className="w-4 h-4" />
                 </div>
               </div>
@@ -401,7 +401,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 md:p-12 shadow-sm">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400">
+            <span className="text-xs font-bold uppercase tracking-wider text-pink-700 dark:text-pink-400">
               Simple Steps. Meaningful Results.
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-1">
@@ -415,7 +415,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Step 1 */}
             <div className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-center space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-pink-100 dark:bg-pink-950/80 text-pink-600 dark:text-pink-400 shadow-sm flex items-center justify-center font-black text-lg mx-auto">
+              <div className="w-12 h-12 rounded-2xl bg-pink-100 dark:bg-pink-950/80 text-pink-700 dark:text-pink-400 shadow-sm flex items-center justify-center font-black text-lg mx-auto">
                 1
               </div>
               <h3 className="text-base font-bold text-slate-900 dark:text-white">

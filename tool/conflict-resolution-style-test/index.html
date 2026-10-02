@@ -2,13 +2,23 @@
 <html lang="en">
   <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4QW8EWN05R"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-4QW8EWN05R');
+  function loadGA(){
+    if (window.__gaLoaded) return;
+    window.__gaLoaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-4QW8EWN05R';
+    document.head.appendChild(s);
+  }
+  window.addEventListener('load', function(){ setTimeout(loadGA, 1500); });
+  ['scroll','click','touchstart','keydown'].forEach(function(e){
+    window.addEventListener(e, loadGA, { once: true, passive: true });
+  });
 </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -59,12 +69,13 @@
 
     <!-- Preconnect Adsterra CDN -->
     <link rel="dns-prefetch" href="https://www.highrevenueformat.com" />
-    <link rel="preconnect" href="https://www.highrevenueformat.com" crossorigin />
+    <link rel="preconnect" href="https://www.highrevenueformat.com" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet"></noscript>
 
     <!-- Structured Data (Schema.org) -->
         <script type="application/ld+json">
@@ -126,10 +137,10 @@
 }
     </script>
 
-
-            <script type="module" crossorigin src="/assets/index-DjK3UrUD.js"></script>
-            <link rel="stylesheet" crossorigin href="/assets/index-C508DsgQ.css">
-          </head>
+
+              <script type="module" crossorigin src="/assets/index-DgmTCQgh.js"></script>
+              <link rel="stylesheet" crossorigin href="/assets/index-C508DsgQ.css">
+            </head>
   <body class="bg-[#fafbfc] text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased selection:bg-pink-500 selection:text-white min-h-screen">
     <div id="root"></div>
   </body>
