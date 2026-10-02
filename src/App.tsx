@@ -3,21 +3,22 @@
  * Modern, High-Performance, SEO-Optimized Client-Side Web Application
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { HomePage } from './components/pages/HomePage';
-import { CatalogPage } from './components/pages/CatalogPage';
-import { AboutPage } from './components/pages/AboutPage';
-import { PrivacyPage } from './components/pages/PrivacyPage';
-import { TermsPage } from './components/pages/TermsPage';
-import { ContactPage } from './components/pages/ContactPage';
-import { ToolDetailView } from './components/tools/ToolDetailView';
-import { SearchModal } from './components/SearchModal';
-import { SocialShareModal } from './components/SocialShareModal';
 import { ALL_TOOLS } from './data/toolsData';
 import { ShareData } from './types';
 import { AdsterraSlot } from './components/AdsterraSlot';
+
+const CatalogPage = lazy(() => import('./components/pages/CatalogPage').then(m => ({ default: m.CatalogPage })));
+const AboutPage = lazy(() => import('./components/pages/AboutPage').then(m => ({ default: m.AboutPage })));
+const PrivacyPage = lazy(() => import('./components/pages/PrivacyPage').then(m => ({ default: m.PrivacyPage })));
+const TermsPage = lazy(() => import('./components/pages/TermsPage').then(m => ({ default: m.TermsPage })));
+const ContactPage = lazy(() => import('./components/pages/ContactPage').then(m => ({ default: m.ContactPage })));
+const ToolDetailView = lazy(() => import('./components/tools/ToolDetailView').then(m => ({ default: m.ToolDetailView })));
+const SearchModal = lazy(() => import('./components/SearchModal').then(m => ({ default: m.SearchModal })));
+const SocialShareModal = lazy(() => import('./components/SocialShareModal').then(m => ({ default: m.SocialShareModal })));
 
 export default function App() {
   // Theme state: defaults to light theme for crisp contrast
@@ -219,7 +220,9 @@ export default function App() {
         )}
 
         <main className="flex-grow">
-          {renderContent()}
+          <Suspense fallback={<div className="min-h-[60vh]" />}>
+            {renderContent()}
+          </Suspense>
         </main>
       </div>
 
@@ -227,19 +230,19 @@ export default function App() {
       <Footer onNavigate={handleNavigate} />
 
       {/* Global Quick Search Modal (âŒ˜K) */}
-      <SearchModal
+      <Suspense fallback={null}><SearchModal
         isOpen={searchOpen}
         onClose={() => setSearchOpen(false)}
         onSelectTool={(slug) => handleNavigate(`tool/${slug}`)}
-      />
+      /></Suspense>
 
       {/* Global Social Sharing Modal */}
       {shareData && (
-        <SocialShareModal
+        <Suspense fallback={null}><SocialShareModal
           isOpen={!!shareData}
           onClose={() => setShareData(null)}
           shareData={shareData}
-        />
+        /></Suspense>
       )}
     </div>
   );

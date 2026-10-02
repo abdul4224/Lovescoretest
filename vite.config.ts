@@ -31,6 +31,9 @@ export default defineConfig(() => {
         '@': path.resolve(import.meta.dirname, '.'),
       },
     },
+    build: {
+      sourcemap: true,
+    },
     server: {
       host: '0.0.0.0',
       port: 3000,
