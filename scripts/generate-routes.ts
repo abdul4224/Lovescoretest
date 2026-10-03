@@ -25,6 +25,23 @@ function escapeHtml(str: string): string {
     .replace(/>/g, '&gt;');
 }
 
+function buildStaticBody(tool: any, seo: { h1: string; metaDescription: string }): string {
+  const parts: string[] = [];
+  parts.push('<main style="max-width:48rem;margin:0 auto;padding:1.5rem 1rem;font-family:system-ui,sans-serif">');
+  parts.push('<h1>' + escapeHtml(seo.h1) + '</h1>');
+  parts.push('<p>' + escapeHtml(tool.description || seo.metaDescription) + '</p>');
+  if (tool.detailedOverview) parts.push('<p>' + escapeHtml(tool.detailedOverview) + '</p>');
+  if (Array.isArray(tool.howItWorks) && tool.howItWorks.length) {
+    parts.push('<h2>How it works</h2><ol>' + tool.howItWorks.map((s: string) => '<li>' + escapeHtml(s) + '</li>').join('') + '</ol>');
+  }
+  if (tool.whatResultMeans) parts.push('<h2>What your result means</h2><p>' + escapeHtml(tool.whatResultMeans) + '</p>');
+  if (Array.isArray(tool.faqs) && tool.faqs.length) {
+    parts.push('<h2>Frequently asked questions</h2>' + tool.faqs.map((f: { question: string; answer: string }) => '<h3>' + escapeHtml(f.question) + '</h3><p>' + escapeHtml(f.answer) + '</p>').join(''));
+  }
+  parts.push('</main>');
+  return parts.join('');
+}
+
 function replaceMeta(html: string, seo: {
   title: string;
   metaDescription: string;
@@ -163,7 +180,8 @@ for (const tool of ALL_TOOLS) {
     });
   }
 
-  const toolHtml = replaceMeta(templateHtml, seo, jsonLdBlocks);
+  const staticBody = buildStaticBody(tool, seo);
+  const toolHtml = replaceMeta(templateHtml, seo, jsonLdBlocks).replace('<div id="root"></div>', () => '<div id="root">' + staticBody + '</div>');
 
   const toolDir = path.join(distToolDir, tool.slug);
   if (!fs.existsSync(toolDir)) {
