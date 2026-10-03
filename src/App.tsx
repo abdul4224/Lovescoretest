@@ -17,7 +17,7 @@ const PrivacyPage = lazy(() => import('./components/pages/PrivacyPage').then(m =
 const TermsPage = lazy(() => import('./components/pages/TermsPage').then(m => ({ default: m.TermsPage })));
 const ContactPage = lazy(() => import('./components/pages/ContactPage').then(m => ({ default: m.ContactPage })));
 const ToolDetailView = lazy(() => import('./components/tools/ToolDetailView').then(m => ({ default: m.ToolDetailView })));
-if (typeof window !== 'undefined' && window.location.pathname.startsWith('/tool/')) {
+if (typeof window !== 'undefined' && (window.location.pathname.startsWith('/tool/') || window.location.search.startsWith('?/tool/'))) {
   void import('./components/tools/ToolDetailView');
 }
 const SearchModal = lazy(() => import('./components/SearchModal').then(m => ({ default: m.SearchModal })));
@@ -74,6 +74,26 @@ export default function App() {
 
   // Social share modal state
   const [shareData, setShareData] = useState<ShareData | null>(null);
+
+  // Wide screen media query state for mounting sidebar ads (>= 1366px)
+  const [isDesktop, setIsDesktop] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      return window.matchMedia('(min-width: 1366px)').matches;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mql = window.matchMedia('(min-width: 1366px)');
+    const onChange = () => setIsDesktop(mql.matches);
+    mql.addEventListener('change', onChange);
+    window.addEventListener('resize', onChange);
+    return () => {
+      mql.removeEventListener('change', onChange);
+      window.removeEventListener('resize', onChange);
+    };
+  }, []);
 
   // Sync dark theme class on document element
   useEffect(() => {
@@ -200,14 +220,14 @@ export default function App() {
 
       {/* Main Page Content */}
       <div className="relative">
-        {currentRoute.startsWith('tool/') && (
+        {currentRoute.startsWith('tool/') && isDesktop && (
           <>
             <aside
               className="hidden md:block fixed top-28 left-0 xl:left-6 2xl:left-[max(1rem,calc(50%-760px))] z-30 w-[160px]"
               aria-label="Left advertisement"
             >
               <div className="w-[160px] overflow-hidden rounded-xl border border-slate-200 bg-white/90 p-0 shadow-sm dark:border-slate-800 dark:bg-slate-900/90">
-                <AdsterraSlot slot="sidebar_left" className="!my-0 !w-[160px] !px-0" />
+                <AdsterraSlot slot="sidebar_left" deferUntilWindowLoad className="!my-0 !w-[160px] !px-0" />
               </div>
             </aside>
 
@@ -216,7 +236,7 @@ export default function App() {
               aria-label="Right advertisement"
             >
               <div className="w-[160px] overflow-hidden rounded-xl border border-slate-200 bg-white/90 p-0 shadow-sm dark:border-slate-800 dark:bg-slate-900/90">
-                <AdsterraSlot slot="sidebar_right" className="!my-0 !w-[160px] !px-0" />
+                <AdsterraSlot slot="sidebar_right" deferUntilWindowLoad className="!my-0 !w-[160px] !px-0" />
               </div>
             </aside>
           </>
@@ -232,7 +252,7 @@ export default function App() {
       {/* Site Footer */}
       <Footer onNavigate={handleNavigate} />
 
-      {/* Global Quick Search Modal (âŒ˜K) */}
+      {/* Global Quick Search Modal (Cmd+K / Ctrl+K) */}
       <Suspense fallback={null}><SearchModal
         isOpen={searchOpen}
         onClose={() => setSearchOpen(false)}

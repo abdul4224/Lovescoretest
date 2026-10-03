@@ -12,6 +12,7 @@ export type AdSlotType =
 interface AdsterraSlotProps {
   slot: AdSlotType;
   className?: string;
+  deferUntilWindowLoad?: boolean;
 }
 
 interface AdUnitConfig {
@@ -102,7 +103,7 @@ const generateSrcDoc = (unit: AdUnitConfig) => {
   return `<!DOCTYPE html><html><head><meta charset="utf-8"><base target="_blank"><style>*,*::before,*::after{box-sizing:border-box}html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:transparent;display:flex;align-items:center;justify-content:center}</style></head><body><script type="text/javascript">atOptions={'key':'${unit.key}','format':'iframe','height':${unit.height},'width':${unit.width},'params':{}};</script><script type="text/javascript" src="${unit.invokeSrc}" async defer></script></body></html>`;
 };
 
-export const AdsterraSlot: React.FC<AdsterraSlotProps> = ({ slot, className = '' }) => {
+export const AdsterraSlot: React.FC<AdsterraSlotProps> = ({ slot, className = '', deferUntilWindowLoad = false }) => {
   const [isDesktop, setIsDesktop] = useState(() => {
     if (typeof window !== 'undefined') {
       return window.innerWidth >= 768;
@@ -122,10 +123,27 @@ export const AdsterraSlot: React.FC<AdsterraSlotProps> = ({ slot, className = ''
     ? (isDesktop ? slotEntry.desktop : slotEntry.mobile)
     : slotEntry;
 
-  // Above the fold slots load eagerly; below-the-fold slots load when within 250px of viewport
+  // Above the fold slots load eagerly; below-the-fold slots load when within 600px of viewport
   const isAboveTheFold = slot === 'homepage_top' || slot === 'tool_top' || slot === 'sidebar_left' || slot === 'sidebar_right';
-  const [shouldLoad, setShouldLoad] = useState<boolean>(isAboveTheFold);
+  const [shouldLoad, setShouldLoad] = useState<boolean>(!deferUntilWindowLoad && isAboveTheFold);
   const containerRef = React.useRef<HTMLDivElement>(null);
+
+  // If deferUntilWindowLoad is enabled, start loading 300ms after window 'load' event
+  useEffect(() => {
+    if (!deferUntilWindowLoad) return;
+    const scheduleLoad = () => {
+      setTimeout(() => {
+        setShouldLoad(true);
+      }, 300);
+    };
+
+    if (document.readyState === 'complete') {
+      scheduleLoad();
+    } else {
+      window.addEventListener('load', scheduleLoad, { once: true });
+      return () => window.removeEventListener('load', scheduleLoad);
+    }
+  }, [deferUntilWindowLoad]);
 
   useEffect(() => {
     if (isAboveTheFold || shouldLoad) return;
@@ -141,7 +159,7 @@ export const AdsterraSlot: React.FC<AdsterraSlotProps> = ({ slot, className = ''
           observer.disconnect();
         }
       },
-      { rootMargin: '250px' }
+      { rootMargin: '600px' }
     );
 
     if (containerRef.current) {
