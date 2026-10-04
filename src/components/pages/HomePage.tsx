@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import {
   Heart,
   Sparkles,
@@ -52,7 +52,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
     {
       question: 'How does LoveScoreTest work?',
       answer:
-        'LoveScoreTest provides a collection of interactive relationship tools, compatibility checks, and communication quizzes. Each tool uses client-side calculation logic—ranging from phonetic name resonance algorithms to structured multi-factor assessments—to evaluate compatibility, love languages, and relationship milestones right in your web browser.',
+        'LoveScoreTest provides a collection of interactive relationship tools, compatibility checks, and communication quizzes. Each tool uses client-side calculation logicâ€”ranging from phonetic name resonance algorithms to structured multi-factor assessmentsâ€”to evaluate compatibility, love languages, and relationship milestones right in your web browser.',
     },
     {
       question: 'Are my entered names, quiz answers, and dates kept private?',
@@ -166,10 +166,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
                   </div>
 
                   <h2 className="text-xl font-extrabold text-slate-900 dark:text-white">
-                    Better Together ♡
+                    Better Together â™¡
                   </h2>
                   <p className="text-xs font-medium text-slate-600 dark:text-slate-300 mt-1">
-                    Alex & Taylor • Harmonic Soul Synergy
+                    Alex & Taylor â€¢ Harmonic Soul Synergy
                   </p>
                 </div>
 
@@ -484,3 +484,4 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
     </div>
   );
 };
+

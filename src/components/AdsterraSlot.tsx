@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface AdsterraSlotProps {
   slot: string;
@@ -14,50 +14,46 @@ export const AdsterraSlot: React.FC<AdsterraSlotProps> = ({
   deferUntilWindowLoad = false
 }) => {
   const adRef = useRef<HTMLDivElement>(null);
-  const [shouldLoad, setShouldLoad] = useState<boolean>(false);
+  const [isRendered, setIsRendered] = useState(false);
 
   useEffect(() => {
-    // If window load deferment is set, wait for page idle
-    const loadTimeout = deferUntilWindowLoad ? 1200 : 200;
+    if (isRendered) return;
+    const container = adRef.current;
+    if (!container) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            setShouldLoad(true);
-          }, loadTimeout);
+        if (entry.isIntersecting && !isRendered) {
+          setIsRendered(true);
           observer.disconnect();
+
+          const scriptTag = document.createElement('script');
+          scriptTag.type = 'text/javascript';
+          scriptTag.src = '/ad-slots.js?slot=' + encodeURIComponent(slot);
+          scriptTag.async = true;
+          container.appendChild(scriptTag);
         }
       },
-      { rootMargin: '250px 0px' }
+      { rootMargin: '200px 0px' }
     );
 
-    if (adRef.current) {
-      observer.observe(adRef.current);
-    }
-
+    observer.observe(container);
     return () => observer.disconnect();
-  }, [deferUntilWindowLoad]);
+  }, [slot, isRendered, deferUntilWindowLoad]);
 
   return (
     <div 
       ref={adRef} 
-      className={`adsterra-slot-container flex justify-center items-center my-6 overflow-hidden transition-all duration-300 ${className}`}
+      className={`adsterra-slot-container flex flex-col justify-center items-center my-6 overflow-hidden rounded-xl bg-slate-50/50 dark:bg-slate-900/40 p-2 ${className}`}
       style={{ minHeight: `${minHeight}px` }}
-      aria-label={`Sponsored Partner Advertisement Slot - ${slot}`}
+      aria-label={`Advertisement Slot - ${slot}`}
       role="region"
     >
-      {shouldLoad ? (
-        <div id={`ad-slot-${slot}`} className="w-full text-center min-h-[250px] flex items-center justify-center">
-          <span className="text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-semibold">
-            Advertisement
-          </span>
-        </div>
-      ) : (
-        <div className="w-full h-full flex items-center justify-center text-slate-300 dark:text-slate-700 text-xs py-4">
-          <span className="animate-pulse">Loading Sponsor...</span>
-        </div>
-      )}
+      <div id={`adsterra-${slot}`} className="w-full text-center flex items-center justify-center min-h-[250px]">
+        <span className="text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-medium">
+          Advertisement
+        </span>
+      </div>
     </div>
   );
 };
