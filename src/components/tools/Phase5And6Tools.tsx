@@ -55,7 +55,7 @@ const Result: React.FC<{
     <div className="w-16 h-16 rounded-3xl bg-pink-100 dark:bg-pink-950/60 text-pink-600 dark:text-pink-300 flex items-center justify-center mx-auto mb-5">
       <Sparkles className="w-8 h-8" />
     </div>
-    <p className="text-xs font-bold uppercase tracking-wider text-pink-500 mb-2">Your Result</p>
+    <p className="text-xs font-bold uppercase tracking-wider text-pink-700 dark:text-pink-500 mb-2">Your Result</p>
     <h2 className="text-4xl font-black text-slate-900 dark:text-white">{score}%</h2>
     <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-lg mx-auto mt-4">{message}</p>
     <div className="mt-7 flex flex-col sm:flex-row gap-3 justify-center">

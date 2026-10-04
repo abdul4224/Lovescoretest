@@ -139,7 +139,7 @@ const Result: React.FC<{
     <div className="w-16 h-16 rounded-3xl bg-pink-100 dark:bg-pink-950/60 text-pink-600 dark:text-pink-300 flex items-center justify-center mx-auto mb-5">
       <Sparkles className="w-8 h-8" />
     </div>
-    <p className="text-xs font-bold uppercase tracking-wider text-pink-500 mb-2">Your Result</p>
+    <p className="text-xs font-bold uppercase tracking-wider text-pink-700 dark:text-pink-500 mb-2">Your Result</p>
     <p className="text-5xl font-black text-slate-900 dark:text-white">{score}%</p>
     <p className="text-lg font-bold text-pink-600 mt-2">{label}</p>
     <p className="text-sm text-slate-500 dark:text-slate-400 mt-3">{message}</p>
@@ -532,7 +532,7 @@ export const ApologyLanguageTool: React.FC<Phase4ToolProps> = ({ tool, onShare }
       {!done ? (
         <div className="space-y-5">
           <div className="rounded-2xl border border-slate-200 dark:border-slate-800 p-5">
-            <p className="text-xs font-bold uppercase tracking-wider text-pink-500 mb-2">
+            <p className="text-xs font-bold uppercase tracking-wider text-pink-700 dark:text-pink-500 mb-2">
               Scenario {index + 1} of {apologyOptions.length}
             </p>
             <p className="font-semibold text-slate-800 dark:text-slate-200">

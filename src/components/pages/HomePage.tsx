@@ -136,7 +136,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShare }) => {
               <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-5 text-xs font-semibold text-slate-700 dark:text-slate-300">
                 <div className="flex items-center gap-1.5">
                   <Shield className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                  <span>100% In-Browser Privacy</span>
+                  <span>Private Client-Side Calculations</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Zap className="w-4 h-4 text-amber-600 dark:text-amber-400" />

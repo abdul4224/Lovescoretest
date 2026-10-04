@@ -194,7 +194,7 @@ export const LoveCalculatorTool: React.FC<LoveCalculatorToolProps> = ({ onShare 
                     onClick={() => setRelationshipType(stage)}
                     className={`py-2 px-3 text-xs font-medium rounded-xl transition-all border ${
                       relationshipType === stage
-                        ? 'bg-pink-50 dark:bg-pink-950/50 border-pink-400 text-pink-600 dark:text-pink-300 font-semibold'
+                        ? 'bg-pink-50 dark:bg-pink-950/50 border-pink-400 text-pink-700 dark:text-pink-300 font-semibold'
                         : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
                     }`}
                   >
@@ -226,7 +226,7 @@ export const LoveCalculatorTool: React.FC<LoveCalculatorToolProps> = ({ onShare 
           <div className="space-y-6 relative z-10 animate-in fade-in zoom-in-95 duration-300">
             {/* Header Result */}
             <div className="text-center">
-              <span className="inline-block px-3 py-1 rounded-full bg-pink-100 dark:bg-pink-950/60 text-pink-600 dark:text-pink-300 text-xs font-semibold mb-2">
+              <span className="inline-block px-3 py-1 rounded-full bg-pink-100 dark:bg-pink-950/60 text-pink-700 dark:text-pink-300 text-xs font-semibold mb-2">
                 {relationshipType} Compatibility
               </span>
               <h2 className="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white">
@@ -308,7 +308,7 @@ export const LoveCalculatorTool: React.FC<LoveCalculatorToolProps> = ({ onShare 
 
             {/* Insight & Tip */}
             <div className="p-4 rounded-2xl bg-pink-50/60 dark:bg-pink-950/30 border border-pink-100 dark:border-pink-900/40 text-xs md:text-sm text-slate-700 dark:text-slate-300">
-              <span className="font-semibold text-pink-600 dark:text-pink-400 block mb-1">
+              <span className="font-semibold text-pink-700 dark:text-pink-400 block mb-1">
                 💡 Connection Tip for {name1} & {name2}:
               </span>
               {result.advice}
@@ -345,7 +345,7 @@ export const LoveCalculatorTool: React.FC<LoveCalculatorToolProps> = ({ onShare 
       </div>
 
       {/* Required Disclaimer */}
-      <p className="text-[11px] text-center text-slate-400 dark:text-slate-500 mt-4 px-4 leading-relaxed">
+      <p className="text-[11px] text-center text-slate-600 dark:text-slate-400 mt-4 px-4 leading-relaxed">
         * <strong>Entertainment Disclaimer:</strong> The Love Calculator is designed for playful fun, couple amusement, and sparking affectionate conversations. True love, mutual respect, and emotional intimacy are built through real-life connection and shared experiences.
       </p>
     </div>

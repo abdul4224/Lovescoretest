@@ -243,9 +243,9 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
                   )}
                 </div>
 
-                <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors leading-snug">
+                <h2 className="text-base md:text-lg font-bold text-slate-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors leading-snug">
                   {tool.title}
-                </h3>
+                </h2>
 
                 <p className="text-xs text-slate-700 dark:text-slate-300 mt-2 leading-relaxed line-clamp-3">
                   {tool.description}

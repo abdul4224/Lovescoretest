@@ -228,9 +228,9 @@ export const ToolDetailView: React.FC<ToolDetailViewProps> = ({
 
       {/* Header section with Unique H1 */}
       <div className="text-center max-w-3xl mx-auto mb-8">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-100 dark:bg-pink-950/60 text-pink-600 dark:text-pink-300 text-xs font-bold mb-3">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-100 dark:bg-pink-950/60 text-pink-700 dark:text-pink-300 text-xs font-bold mb-3">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>{tool.category} • 100% Free & Private</span>
+          <span>{tool.category} • 100% Free</span>
         </div>
 
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
@@ -311,7 +311,7 @@ export const ToolDetailView: React.FC<ToolDetailViewProps> = ({
                 e.preventDefault();
                 onNavigate('catalog');
               }}
-              className="text-xs font-bold text-pink-600 dark:text-pink-400 hover:underline flex items-center gap-1"
+              className="text-xs font-bold text-pink-700 dark:text-pink-400 hover:underline flex items-center gap-1"
             >
               <span>View All 100</span>
               <ChevronRight className="w-3.5 h-3.5" />
@@ -330,7 +330,7 @@ export const ToolDetailView: React.FC<ToolDetailViewProps> = ({
                 className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-pink-300 dark:hover:border-pink-600 hover:shadow-md transition-all cursor-pointer group flex flex-col justify-between"
               >
                 <div>
-                  <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-pink-500 mb-2">
+                  <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-pink-700 dark:text-pink-500 mb-2">
                     {rel.category}
                   </span>
                   <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors line-clamp-1">
@@ -340,7 +340,7 @@ export const ToolDetailView: React.FC<ToolDetailViewProps> = ({
                     {rel.description}
                   </p>
                 </div>
-                <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-[11px] font-semibold text-pink-600 dark:text-pink-400">
+                <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-[11px] font-semibold text-pink-700 dark:text-pink-400">
                   <span>{rel.isAvailable ? 'Try Tool Free' : 'Coming Soon'}</span>
                   <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </div>

@@ -51,7 +51,7 @@ export const PrivacyPage: React.FC = () => {
             3. Advertising & Analytics
           </h2>
           <p>
-            To keep all 100 relationship tools free for everyone without subscriptions or paywalls, LoveScoreTest.com may display advertisements provided by reputable advertising partners (such as Adsterra or Google AdSense). These third-party ad networks may use standard cookies or web beacons to display context-relevant advertising. You can control or disable cookies at any time via your browser settings.
+            To keep all 100 relationship tools free for everyone without subscriptions or paywalls, LoveScoreTest.com may display advertisements provided by reputable advertising partners (currently Adsterra). These third-party ad networks may use standard cookies or web beacons to display context-relevant advertising. LoveScoreTest.com also uses Google Analytics to measure general site traffic. Google Analytics and advertising partners may collect standard browser and device information, such as your IP address and pages visited. You can control or disable cookies at any time via your browser settings.
           </p>
         </section>
 

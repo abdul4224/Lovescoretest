@@ -31,7 +31,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
             <div className="flex items-center gap-3 text-xs text-slate-600 dark:text-slate-400 pt-1">
               <span className="flex items-center gap-1">
-                <Shield className="w-3.5 h-3.5 text-emerald-500" /> 100% Client-Side Private
+                <Shield className="w-3.5 h-3.5 text-emerald-500" /> Client-Side Tool Processing
               </span>
               <span>•</span>
               <span className="flex items-center gap-1">
